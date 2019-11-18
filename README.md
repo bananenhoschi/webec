@@ -28,11 +28,11 @@ Die App hat folgende Features:
 - Ich kann definieren aus wievielen Noten und zu wieviel Prozent die Modulnote besteht.
 - Ein Modul wird als bestanden oder nicht bestanden gekennzeichnet.
 - Einem Modul kann ich hinterlegen wieviele Credits erhalten werden.
-### Übersicht
+#### Übersicht
 - In der Übersicht sehe ich welche Module ich im aktuellen Semester besuche und welche Noten inkl. Schnitt ich habe.
 - Ich sehe wieviel Module ich schon besucht und bestanden habe und wieviele ich noch benötige.
 - Ich sehe meinen Gesamtschnitt über alle Module (gewichtet und ungewichtet).
-### Benutzer und Rollen
+#### Benutzer und Rollen
 - Es gibt die Rolle des Admin. Dieser kann alles Modifizieren.
 - Es gibt die Rolle Student. Dieser kann seine Module modifizieren.
 - Es gibt die Rolle Gast. Dieser kann nur den Fortschritt und den Schnitt sehen.
