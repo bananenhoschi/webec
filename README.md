@@ -38,6 +38,8 @@ Die App hat folgende Features:
 - Es gibt die Rolle Gast. Dieser kann nur den Fortschritt und den Schnitt sehen.
 - Ein nicht angemeldeter Benutzer hat keine Einsicht in die Noten.
 
+### Draft Mockup
+![mockup](mockup.png)
 ## Project confirmation
 
 < to be filled by lecturer>
