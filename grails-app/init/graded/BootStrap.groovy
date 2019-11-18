@@ -1,4 +1,4 @@
-package exercise
+package graded
 
 class BootStrap {
 
