@@ -2,7 +2,7 @@ package graded
 
 import grails.rest.Resource
 
-@Resource(uri = '/moduls', formats = ['json'])
+@Resource(uri = '/module', formats = ['json'])
 class Modul {
 
     String modulKuerzel;
