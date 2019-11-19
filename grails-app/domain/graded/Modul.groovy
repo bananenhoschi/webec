@@ -10,12 +10,18 @@ class Modul {
     String dozent;
     int credits;
 
-    boolean hasMsp;
-    boolean isTestat;
+    // Default ist true, die meisten Module haben eine MSP
+    boolean hasMsp = true;
+    // Default ist false, nur wenige Module haben eine Testat Arbeit
+    boolean isTestat = false;
 
     // static hasMany = [en: Note]
     // static hasOne = [msp: Note]
 
     static constraints = {
+        // Mindestens das Modulkürzel muss erfasst sein
+        modulKuerzel(nullable: false)
+        // Credits sind zwischen 2 für Kontext und 12 für IP6
+        credits(min: 2, max: 12)
     }
 }
