@@ -15,14 +15,19 @@ class Modul {
     // Default ist false, nur wenige Module haben eine Testat Arbeit
     boolean isTestat = false;
 
-    // static hasMany = [en: Note]
-    // static hasOne = [msp: Note]
+    Set<Note> ens;
+    Note msp;
+
+    static belongsTo = [semester: Semester]
 
     static constraints = {
+
         // Mindestens das Modulkürzel muss erfasst sein
         modulKuerzel(nullable: false)
         modulBezeichnung(nullable: true)
         dozent(nullable: true)
+        msp(nullable: true)
+        ens(nullable: true)
         // Credits sind zwischen 2 für Kontext und 12 für IP6
         credits(min: 2, max: 12)
     }
