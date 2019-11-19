@@ -52,6 +52,7 @@
                             Keine MSP
                         </g:else>
                     </td>
+                    <td><span class="oi oi-circle-check"></span></td>
                 </tr>
                 <% } %>
             </table>
