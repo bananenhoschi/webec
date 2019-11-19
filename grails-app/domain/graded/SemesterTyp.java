@@ -7,7 +7,7 @@ public enum SemesterTyp {
 
     private String name;
 
-    SemesterTyp(String name){
+    SemesterTyp(String name) {
         this.name = name;
     }
 

@@ -13,15 +13,18 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Semester</th>
                     <th>Kürzel</th>
                     <th>Bezeichnung</th>
                     <th>Credits</th>
                     <th colspan="${maxENs}">Erfahrungsnoten</th>
                     <th>MSP</th>
+                    <th>Bestanden</th>
                 </tr>
                 </thead>
                 <% module.each { modul -> %>
                 <tr>
+                    <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
                     <td>${modul.modulKuerzel}</td>
                     <td>${modul.modulBezeichnung}</td>
                     <td>${modul.credits}</td>
