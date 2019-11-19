@@ -1,18 +1,19 @@
 package graded
 
-import grails.testing.gorm.DomainUnitTest
+import grails.gorm.transactions.Rollback
+import grails.testing.mixin.integration.Integration
 import spock.lang.Specification
 
-class ModulSpec extends Specification implements DomainUnitTest<Modul> {
+@Integration
+@Rollback
+class ModulSpec extends Specification {
 
-    def setup() {
+    void setup() {
+        new Modul(modulKuerzel: "algd1", modulBezeichnung: "Algorithmen und Datenstrukturen", dozent: "M. Henninger", credits: 3, hasMsp: true).save(flush: true)
     }
 
-    def cleanup() {
-    }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "test persist"() {
+        expect:
+            Modul.count() == 1
     }
 }
