@@ -1,8 +1,15 @@
 package graded
 
-import grails.gorm.services.Service
+import grails.gorm.transactions.Transactional
 
-@Service(Modul)
-interface ModulService {
-    Modul save(Modul modul)
+@Transactional
+class ModulService {
+
+    def save(modul){
+        modul.save()
+    }
+
+    def list() {
+        Modul.findAll()
+    }
 }
