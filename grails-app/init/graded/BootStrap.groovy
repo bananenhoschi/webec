@@ -6,12 +6,18 @@ import groovy.transform.CompileStatic
 class BootStrap {
 
     ModulService modulService
-    SemesterService semesterService
 
     def init = { servletContext ->
 
-        Semester hs19 = semesterService.save(SemesterTyp.HS, 19)
-        Semester hs16 = semesterService.save(SemesterTyp.HS, 16)
+        Semester hs19 = Semester.create()
+        hs19.setSemesterTyp(SemesterTyp.HS)
+        hs19.setJahr(19)
+        hs19.save()
+
+        Semester hs16 = Semester.create()
+        hs16.setSemesterTyp(SemesterTyp.HS)
+        hs16.setJahr(16)
+        hs16.save()
 
         Modul algd1x = Modul.create()
         algd1x.setModulKuerzel('algd1')
