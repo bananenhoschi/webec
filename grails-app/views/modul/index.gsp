@@ -52,7 +52,7 @@
                             Keine MSP
                         </g:else>
                     </td>
-                    <td><span class="oi oi-circle-check"></span></td>
+                    <td><g:if test="${modul.passed()}"><span class="oi oi-circle-check"></span></g:if><g:else><span class="oi oi-circle-x"></g:else></td>
                 </tr>
                 <% } %>
             </table>

@@ -17,6 +17,24 @@ class Modul {
 
     static belongsTo = [semester: Semester]
 
+    boolean passed() {
+
+        if (isTestat) {
+            return true
+        }
+
+        double en = 1.0
+        for (Note note : ens) {
+            en += note.note * note.gewichtung
+        }
+
+        if (hasMsp && msp) {
+            return 3.75 <= (Math.round((msp.note + en) / 2) * 2) / 2
+        }
+
+        return false
+    }
+
     static constraints = {
 
         // Mindestens das Modulkürzel muss erfasst sein
