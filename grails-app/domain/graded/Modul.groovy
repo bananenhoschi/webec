@@ -11,28 +11,36 @@ class Modul {
     boolean hasMsp = true;
     // Default ist false, nur wenige Module haben eine Testat Arbeit
     boolean isTestat = false;
+    boolean hasTestat = false;
 
     Set<Note> ens = new HashSet<>()
     Note msp;
 
     static belongsTo = [semester: Semester]
 
-    boolean passed() {
 
-        if (isTestat) {
-            return true
-        }
+    boolean completed() {
+        return hasMsp && !msp || isTestat && hasTestat
+    }
 
-        double en = 1.0
+    double erfahrungsnote() {
+        double en = 0
         for (Note note : ens) {
-            en += note.note * note.gewichtung
+            en += (note.note * note.gewichtung)
         }
+        return en
+    }
 
-        if (hasMsp && msp) {
-            return 3.75 <= (Math.round((msp.note + en) / 2) * 2) / 2
+    double modulnote() {
+        double modulnote = erfahrungsnote()
+        if (hasMsp && msp != null && msp.note > 0) {
+            modulnote = Math.round((msp.note + modulnote) / 2 * 2) / 2
         }
+        return modulnote
+    }
 
-        return false
+    boolean passed() {
+        return (hasMsp && msp && (3.75 <= modulnote())) || isTestat && hasTestat
     }
 
     static constraints = {

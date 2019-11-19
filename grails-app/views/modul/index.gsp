@@ -17,9 +17,11 @@
                     <th>Kürzel</th>
                     <th>Bezeichnung</th>
                     <th>Credits</th>
-                    <th colspan="${maxENs}">Erfahrungsnoten</th>
+                    <th colspan="${maxENs}">Semesternoten</th>
+                    <th>EN</th>
                     <th>MSP</th>
-                    <th>Bestanden</th>
+                    <th>Modulnote</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <% module.each { modul -> %>
@@ -40,6 +42,7 @@
                     <g:else>
                         <td colspan="${maxENs}"></td>
                     </g:else>
+                    <td>${modul.erfahrungsnote()}</td>
                     <td>
                         <g:if test="${modul.hasMsp}">
                             <g:if test="${modul.msp}">
@@ -55,7 +58,18 @@
                             Keine MSP
                         </g:else>
                     </td>
-                    <td><g:if test="${modul.passed()}"><span class="oi oi-circle-check"></span></g:if><g:else><span class="oi oi-circle-x"></g:else></td>
+                <td>${modul.modulnote()}</td>
+                <td>
+                        <g:if test="${modul.passed()}">
+                            <span class="oi oi-check" title="bestanden"></span>
+                        </g:if>
+                        <g:elseif test="${modul.completed()}">
+                            <span class="oi oi-ellipses" title="offen">
+                        </g:elseif>
+                        <g:else>
+                            <span class="oi oi-ban" title="nicht bestanden">
+                        </g:else>
+                    </td>
                 </tr>
                 <% } %>
             </table>
