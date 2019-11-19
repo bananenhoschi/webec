@@ -4,10 +4,10 @@ class ModulController {
 
     ModulService modulService
 
-    def index() {
+    def module() {
         List<Modul> module = modulService.list()
         int maxEns = module.max {m -> m.getEns().size()}.ens.size()
 
-        render view: 'index', model: [module: modulService.list(), maxENs: maxEns]
+        render view: 'module', model: [module: modulService.list(), maxENs: maxEns]
     }
 }
