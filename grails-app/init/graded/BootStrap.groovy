@@ -11,6 +11,33 @@ class BootStrap {
     def init = { servletContext ->
 
         Semester hs19 = semesterService.save(SemesterTyp.HS, 19)
+        Semester hs16 = semesterService.save(SemesterTyp.HS, 16)
+
+        Modul algd1x = Modul.create()
+        algd1x.setModulKuerzel('algd1')
+        algd1x.setModulBezeichnung('Algorithmen und Datenstrukturen 1')
+        algd1x.setCredits(3)
+        algd1x.setSemester(hs16)
+
+        Note n1x = Note.create()
+        n1x.setNote((double) 3.2)
+        n1x.setGewichtung((double) 0.5)
+
+        Note n2x = Note.create()
+        n2x.setNote((double) 3.8)
+        n2x.setGewichtung((double) 0.5)
+        Note.saveAll(n1x, n2x)
+
+        Note mspx = Note.create()
+        mspx.setNote((double) 3.8)
+        mspx.setGewichtung((double) 1.0)
+
+        Set<Note> ensx = new HashSet<>()
+        ensx.add(n1x)
+        ensx.add(n2x)
+        algd1x.setEns(ensx)
+        algd1x.setMsp(mspx)
+        modulService.save(algd1x)
 
         Modul algd1 = Modul.create()
         algd1.setModulKuerzel('algd1')
@@ -20,12 +47,11 @@ class BootStrap {
 
         Note n1 = Note.create()
         n1.setNote((double) 5.0)
-        n1.setGewichtung((double) 1.0)
-
+        n1.setGewichtung((double) 0.5)
 
         Note n2 = Note.create()
         n2.setNote((double) 4.4)
-        n2.setGewichtung((double) 1.0)
+        n2.setGewichtung((double) 0.5)
         Note.saveAll(n1, n2)
 
         Note msp = Note.create()
