@@ -1,7 +1,5 @@
 package graded
 
-import java.awt.print.Book
-
 class Semester {
 
     SemesterTyp semesterTyp;

@@ -3,7 +3,7 @@ package graded
 class Note {
 
     double note;
-    
+
     // Gewichtung in Prozent Werten
     double gewichtung;
 
