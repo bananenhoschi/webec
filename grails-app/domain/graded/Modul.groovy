@@ -21,6 +21,8 @@ class Modul {
     static constraints = {
         // Mindestens das Modulkürzel muss erfasst sein
         modulKuerzel(nullable: false)
+        modulBezeichnung(nullable: true)
+        dozent(nullable: true)
         // Credits sind zwischen 2 für Kontext und 12 für IP6
         credits(min: 2, max: 12)
     }
