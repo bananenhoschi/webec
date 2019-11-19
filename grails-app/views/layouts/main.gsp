@@ -7,6 +7,6 @@
 </head>
 
 <body>
-Hello World
+<g:layoutBody/>
 </body>
 </html>
