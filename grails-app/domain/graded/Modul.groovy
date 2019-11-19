@@ -12,7 +12,7 @@ class Modul {
     // Default ist false, nur wenige Module haben eine Testat Arbeit
     boolean isTestat = false;
 
-    Set<Note> ens;
+    Set<Note> ens = new HashSet<>()
     Note msp;
 
     static belongsTo = [semester: Semester]
