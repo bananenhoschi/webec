@@ -2,8 +2,6 @@
 
 ## Commit Proposal
 
-Matriculation Number: <to be filled by student>
-
 Project idea short description: 
 
 Bei diesem Projekt handelt es sich um eine Notenerfassungs-App genannt *Graded*.
@@ -42,8 +40,8 @@ Die App hat folgende Features:
 ![mockup](mockup.png)
 ## Project confirmation
 
-< to be filled by lecturer>
-
+This is a very detailed description! Start small, with a minimum viable prototype. Extend if time permits.
+You might start.
 
 ## Project delivery <to be filled by student>
 
