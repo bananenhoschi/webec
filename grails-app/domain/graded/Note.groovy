@@ -7,7 +7,7 @@ class Note {
     // Gewichtung in Prozent Werten
     double gewichtung;
 
-    //static belongsTo = [modul: Modul]
+    static belongsTo = [modul: Modul]
 
     static constraints = {
         gewichtung(min: 0.0d, max: 1.0d)

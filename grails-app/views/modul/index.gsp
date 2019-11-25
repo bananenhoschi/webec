@@ -7,7 +7,7 @@
 
 <body>
 <h2>Modulnoten</h2>
-
+<g:link controller="modul" action="create" class="btn btn-outline-success float-right"><span class="oi oi-plus"></span> Neues Modul</g:link>
 <table class="table">
     <thead>
     <tr>
@@ -26,7 +26,7 @@
     <% module.each { modul -> %>
     <tr>
         <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
-        <td>${modul.modulKuerzel}</td>
+        <td><g:link action="edit" id="${modul.id}">${modul.modulKuerzel}</g:link></td>
         <td>${modul.modulBezeichnung}</td>
         <td>${modul.dozent}</td>
         <td>${modul.credits}</td>
@@ -64,10 +64,10 @@
                 <span class="oi oi-check" title="bestanden"></span>
             </g:if>
             <g:elseif test="${modul.completed()}">
-                <span class="oi oi-ellipses" title="offen">
+                <span class="oi oi-ellipses" title="offen"></span>
             </g:elseif>
             <g:else>
-                <span class="oi oi-ban" title="nicht bestanden">
+                <span class="oi oi-ban" title="nicht bestanden"></span>
             </g:else>
         </td>
     </tr>

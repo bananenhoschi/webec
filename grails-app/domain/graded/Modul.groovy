@@ -13,7 +13,7 @@ class Modul {
     boolean isTestat = false;
     boolean hasTestat = false;
 
-    Set<Note> ens = new HashSet<>()
+    static hasMany = [ens: Note]
     Note msp;
 
     static belongsTo = [semester: Semester]
