@@ -5,7 +5,6 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class BootStrap {
 
-    ModulService modulService
 
     def init = { servletContext ->
 
@@ -32,7 +31,6 @@ class BootStrap {
         Note n2x = Note.create()
         n2x.setNote((double) 3.8)
         n2x.setGewichtung((double) 0.5)
-        Note.saveAll(n1x, n2x)
 
         Note mspx = Note.create()
         mspx.setNote((double) 3.8)
@@ -43,7 +41,7 @@ class BootStrap {
         ensx.add(n2x)
         algd1x.setEns(ensx)
         algd1x.setMsp(mspx)
-        modulService.save(algd1x)
+        algd1x.save()
 
         Modul algd1 = Modul.create()
         algd1.setModulKuerzel('algd1')
@@ -58,7 +56,6 @@ class BootStrap {
         Note n2 = Note.create()
         n2.setNote((double) 4.4)
         n2.setGewichtung((double) 0.5)
-        Note.saveAll(n1, n2)
 
         Note msp = Note.create()
         msp.setNote((double) 4.0)
@@ -69,7 +66,7 @@ class BootStrap {
         ens.add(n2)
         algd1.setEns(ens)
         algd1.setMsp(msp)
-        modulService.save(algd1)
+        algd1.save()
 
         Modul webeC = Modul.create()
         webeC.setModulKuerzel('webeC')
@@ -80,19 +77,18 @@ class BootStrap {
         Note n3 = Note.create()
         n3.setNote((double) 4.0)
         n3.setGewichtung((double) 1.0)
-        Note.saveAll(n3)
 
         Set<Note> ens2 = new HashSet<>()
         ens2.add(n3)
         webeC.setEns(ens2)
-        modulService.save(webeC)
+        webeC.save()
 
         Modul webfr = Modul.create()
         webfr.setModulKuerzel('webfr')
         webfr.setModulBezeichnung('Web Frameworks')
         webfr.setCredits(3)
         webfr.setSemester(hs19)
-        modulService.save(webfr)
+        webfr.save()
 
         Modul agrh = Modul.create()
         agrh.setModulKuerzel('agrh')
@@ -100,7 +96,7 @@ class BootStrap {
         agrh.setCredits(2)
         agrh.setIsTestat(true)
         agrh.setSemester(hs19)
-        modulService.save(agrh)
+        agrh.save()
 
 
     }

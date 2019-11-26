@@ -23,7 +23,7 @@
         <th></th>
     </tr>
     </thead>
-    <% module.each { modul -> %>
+    <% modulList.each { modul -> %>
     <tr>
         <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
         <td><g:link action="edit" id="${modul.id}">${modul.modulKuerzel}</g:link></td>
@@ -34,7 +34,7 @@
             <g:each var="en" in="${modul.ens.init()}">
                 <td>${en.note}</td>
             </g:each>
-            <td colspan="${maxENs - modul.ens.size() + 1}">${modul.ens.last().note}</td>
+            <td colspan="${maxENs - modul.ens?.size() + 1}">${modul.ens.last().note}</td>
         </g:if>
         <g:elseif test="${modul.isTestat}">
             <td colspan="${maxENs}">Testat</td>

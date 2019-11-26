@@ -4,6 +4,10 @@ class Note {
 
     double note;
 
+    Note(String note){
+        this.note = Double.valueOf(note)
+    }
+
     // Gewichtung in Prozent Werten
     double gewichtung;
 

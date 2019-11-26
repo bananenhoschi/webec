@@ -1,46 +1,64 @@
 package graded
 
-import grails.gorm.transactions.Transactional
 import grails.validation.ValidationException
+
+import static org.springframework.http.HttpStatus.NOT_FOUND
 
 class ModulController {
 
     ModulService modulService
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        List<Modul> module = modulService.list(params)
-        int maxEns = module.max { m -> m.getEns().size() }.ens.size()
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-        render view: 'index', model: [module: module, maxENs: maxEns]
+    def index() {
+        List<Modul> module = modulService.list()
+        int maxEns = module.max { m -> m.getEns().size() }.ens.size()
+        respond module, model: [semesterCount: modulService.count(), maxENs: maxEns]
     }
 
+    def show(Long id) {
+        respond modulService.get(id)
+    }
 
     def create() {
         respond new Modul(params)
     }
 
-    def edit(Long id) {
-        render view: 'edit', model: [modul: modulService.get(id)]
+    def save(Modul modul) {
+        if (modul == null) {
+            return
+        }
+
+        try {
+            if(modul.ens == null){
+                modul.setEns(new HashSet<Note>())
+            }
+            modulService.save(modul)
+        } catch (ValidationException e) {
+            respond modul.errors, view: 'create'
+            return
+        }
+
+        redirect(view: 'index')
     }
 
-    @Transactional
+    def edit(Long id) {
+        respond modulService.get(id)
+    }
+
     def update(Modul modul) {
         if (modul == null) {
-            notFound()
             return
         }
 
         try {
             modulService.save(modul)
-            redirect(action: "index")
         } catch (ValidationException e) {
             respond modul.errors, view: 'edit'
             return
         }
+
+        redirect(action: "index")
     }
 
-    protected void notFound() {
-        render view: 'notFound'
-    }
 }

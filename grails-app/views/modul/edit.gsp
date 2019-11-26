@@ -1,79 +1,78 @@
-<%@ page import="graded.Semester" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Edit Modul</title>
+    <g:set var="entityName" value="${message(code: 'modul.label', default: 'Modul')}"/>
+    <title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
 
 <body>
-<div class="container">
-    <h1>
-        <g:if test="${modul.modulBezeichnung}">${modul.modulBezeichnung}</g:if>
-        <g:else>${modul.modulKuerzel}</g:else>
-    </h1>
-    <g:form controller="modul" action="update">
-        <g:hiddenField name="id" value="${modul.id}"/>
+<div id="edit-modul" class="content scaffold-edit" role="main">
+
+    <h1><g:if
+            test="${this.modul.modulBezeichnung}">${this.modul.modulBezeichnung}</g:if><g:else>${this.modul.modulKuerzel}</g:else></h1>
+
+    <g:if test="${flash.message}">
+        <div class="message" role="status">${flash.message}</div>
+    </g:if>
+
+<!-- Error Fields -->
+    <g:hasErrors bean="${this.modul}">
+        <ul class="errors" role="alert">
+            <g:eachError bean="${this.modul}" var="error">
+                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+                        error="${error}"/></li>
+            </g:eachError>
+        </ul>
+    </g:hasErrors>
+
+    <g:form resource="${this.modul}" method="PUT">
+        <g:hiddenField name="version" value="${this.modul?.version}"/>
         <div class="form-group">
             <label for="kuerzel">Kürzel:</label>
-            <g:textField id="kuerzel" name="modulKuerzel" value="${modul.modulKuerzel}" class="form-control"/>
+            <g:textField id="kuerzel" name="modulKuerzel" value="${this.modul.modulKuerzel}" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="bezeichnung">Bezeichnung:</label>
-            <g:textField id="bezeichnung" name="modulBezeichnung" value="${modul.modulBezeichnung}"
+            <g:textField id="bezeichnung" name="modulBezeichnung" value="${this.modul.modulBezeichnung}"
                          class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="credits">Credits:</label>
-            <g:textField id="credits" name="credits" value="${modul.credits}" class="form-control" type="number"/>
+            <g:textField id="credits" name="credits" value="${this.modul.credits}" class="form-control" type="number"/>
         </div>
 
         <div class="form-group">
             <label for="dozent">Dozent:</label>
-            <g:textField id="dozent" name="dozent" value="${modul.dozent}" class="form-control"/>
+            <g:textField id="dozent" name="dozent" value="${this.modul.dozent}" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="semester">Semester:</label>
             <g:select name="semester" class="custom-select"
                       from="${graded.Semester.list()}"
-                      value="${modul?.semester.semesterTyp}${modul?.semester.jahr}"
+                      value="${this.modul?.semester.semesterTyp}${this.modul?.semester.jahr}"
                       optionKey="id"/>
         </div>
 
         <div class="form-group">
             <h3>Noten</h3>
-            <g:link controller="modul" action="addNote" resource="${modul}" class="btn btn-outline-success btn-sm"><span
+            <g:link controller="modul" action="addNote" resource="${this.modul}"
+                    class="btn btn-outline-success btn-sm"><span
                     class="oi oi-plus"></span> Note hinzufügen</g:link>
-            <g:if test="${!modul.ens.isEmpty()}">
-
-                <% modul.ens.each { en -> %>
-                <div class="form-inline">
-                    <label for="en-${en.id}" class="col-1">Note:</label>&nbsp;
-                <g:textField id="en-${en.id}" name="en-${en.id}" value="${en.note}"
-                             class="form-control col-sm-1"/>&nbsp;
-                <g:textField id="gewichtung-${en.id}" name="gewichtung-${en.id}" value="${en.gewichtung}"
-                             class="form-control col-sm-1"/>
-
-                </div>
-                <% } %>
-            </g:if>
             <hr/>
-            <g:if test="${modul.msp != null}">
 
-                <div class="form-inline">
-                    <label for="msp" class="col-1">MSP:</label>
-                    <g:textField id="msp" name="msp" value="${modul.msp.note}" class="form-control col-sm-1"/>
-                </div>
-            </g:if>
+            <div class="form-inline">
+                <label for="msp" class="col-1">MSP:</label>
+                <input type="number" id="msp" name="msp" value="${this.modul.msp}" class="form-control col-sm-1"
+                       step="0.1"/>
+            </div>
         </div>
-
-        <div class="form-group">
-            <input type="submit" name="save" class="btn btn-outline-secondary" value="Speichern" id="save"/>
-            <input type="button" value="Abbrechen" class="btn btn-outline-secondary"/>
-        </div>
+        <fieldset class="buttons">
+            <input class="btn btn-primary" type="submit" value="Speichern"/>
+        </fieldset>
     </g:form>
 </div>
 </body>
