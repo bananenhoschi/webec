@@ -7,7 +7,8 @@
 
 <body>
 <h2>Modulnoten</h2>
-<g:link controller="modul" action="create" class="btn btn-outline-success float-right"><span class="oi oi-plus"></span> Neues Modul</g:link>
+<g:link controller="modul" action="create" class="btn btn-outline-success float-right"><span
+        class="oi oi-plus"></span> Neues Modul</g:link>
 <table class="table">
     <thead>
     <tr>
@@ -64,7 +65,7 @@
                 <span class="oi oi-check" title="bestanden"></span>
             </g:if>
             <g:elseif test="${modul.completed()}">
-                <span class="oi oi-ellipses" title="offen"></span>
+                <span class="oi oi-clock" title="offen"></span>
             </g:elseif>
             <g:else>
                 <span class="oi oi-ban" title="nicht bestanden"></span>
