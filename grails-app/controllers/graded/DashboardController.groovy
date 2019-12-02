@@ -17,8 +17,9 @@ class DashboardController {
         List<Modul> nichtBestanden = module.findAll { !it.isPassed() }
         List<Modul> aktuell = module.findAll { !it.isCompleted() }
 
+
         respond view: 'index', model: [bestanden: bestanden, nichtBestanden: nichtBestanden, aktuell: aktuell, max: MAX_ECTS]
 
-}
+    }
 
 }
