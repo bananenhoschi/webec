@@ -95,6 +95,7 @@
 
         <div class="form-group card card-body">
             <h3>Noten:</h3>
+        <!-- TODO @ribeaud  -->
         <g:each in="${this.modul.noten}" var="note">
             <div class="form-row">
                 <div class="col form-inline col-sm-4">
