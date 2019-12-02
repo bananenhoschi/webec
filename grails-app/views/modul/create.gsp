@@ -1,9 +1,9 @@
+<%@ page import="org.springframework.validation.FieldError" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'modul.label', default: 'Modul')}"/>
-    <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <title>Grader - Modul hinzufügen</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <g:hasErrors bean="${this.modul}">
         <ul class="errors" role="alert">
             <g:eachError bean="${this.modul}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+                <li <g:if test="${error in FieldError}">data-field-id="${error.field}"</g:if>><g:message
                         error="${error}"/></li>
             </g:eachError>
         </ul>
@@ -25,7 +25,7 @@
             <label for="kuerzel" class="col-md-2 col-form-label col-form-label-md">Kürzel:</label>
 
             <div class="col-md-10">
-                <g:textField id="kuerzel" name="modulKuerzel" value="${modul.modulKuerzel}"
+                <g:textField id="kuerzel" name="modulKuerzel" value="${this.modul.kuerzel}"
                              class="form-control form-control-md col-md-1"/>
             </div>
         </div>
@@ -34,42 +34,9 @@
             <label for="bezeichnung" class="col-md-2 col-form-label col-form-label-md">Bezeichnung:</label>
 
             <div class="col-md-10">
-                <g:textField id="bezeichnung" name="modulBezeichnung" value="${modul.modulBezeichnung}"
+                <g:textField id="bezeichnung" name="modulBezeichnung" value="${this.modul.bezeichnung}"
                              class="form-control form-control-md col-md-3"/>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="credits" class="col-md-2 col-form-label col-form-label-md">Credits:</label>
-
-            <div class="col-md-10">
-                <g:textField id="credits" name="credits" value="${modul.credits}"
-                             class="form-control form-control-md col-md-1"
-                             type="number"/>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="dozent" class="col-md-2 col-form-label col-form-label-md">Dozent (Kürzel):</label>
-
-            <div class="col-md-10">
-                <g:textField id="dozent" name="dozent" value="${modul.dozent}"
-                             class="form-control form-control-md col-md-1"/>
-            </div>
-        </div>
-
-        <div class="form-check ">
-            <label for="dozent" class="form-check-label">
-                <g:checkBox id="testat" name="testat" value="${modul.isTestat}" class="form-check-input "/>
-                nur Testat
-            </label>
-        </div>
-
-        <div class="form-check ">
-            <label for="hasMsp" class="form-check-label">
-                <g:checkBox id="hasMsp" name="hasMsp" value="${modul.hasMsp}" class="form-check-input"/>
-                hat Modulschlussprüfung
-            </label>
         </div>
 
         <div class="form-group row">
@@ -84,17 +51,48 @@
             </div>
         </div>
 
-        <g:if test="${modul.hasMsp}">
-            <div class="form-group row">
-                <label for="msp" class="col-md-2 col-form-label col-form-label-md">MSP:</label>
+        <div class="form-group row">
+            <label for="credits" class="col-md-2 col-form-label col-form-label-md">Credits:</label>
 
-                <div class="col-md-10">
-                    <input id="msp" name="msp" value="${modul.msp}"
-                                 class="form-control form-control-md col-md-1"
-                                 type="number"/>
-                </div>
+            <div class="col-md-10">
+                <input id="credits" name="credits" value="${this.modul.credits}"
+                             class="form-control form-control-md col-md-1"
+                             type="number"/>
             </div>
-        </g:if>
+        </div>
+
+        <div class="form-group row">
+            <label for="dozent" class="col-md-2 col-form-label col-form-label-md">Dozent (Kürzel):</label>
+
+            <div class="col-md-10">
+                <g:textField id="dozent" name="dozent" value="${this.modul.dozent}"
+                             class="form-control form-control-md col-md-1"/>
+            </div>
+        </div>
+
+        <div class="form-check ">
+            <label for="hasTestat" class="form-check-label">
+                <g:checkBox id="hasTestat" name="hasTestat" value="${this.modul.hasTestat}" class="form-check-input "/>
+                nur Testat
+            </label>
+        </div>
+
+        <div class="form-check ">
+            <label for="hasMsp" class="form-check-label">
+                <g:checkBox id="hasMsp" name="hasMsp" value="${this.modul.hasMsp}" class="form-check-input"/>
+                hat Modulschlussprüfung
+            </label>
+        </div>
+
+        <div class="form-group row">
+            <label for="anzahlNoten" class="col-md-2 col-form-label col-form-label-md">Anzahl Noten (ohne MSP):</label>
+
+            <div class="col-md-10">
+                <input id="anzahlNoten" name="anzahlNoten"
+                       class="form-control form-control-md col-md-1"
+                       type="number"/>
+            </div>
+        </div>
 
         <fieldset class="buttons">
             <g:submitButton name="create" class="btn btn-primary" value="Speichern"/>

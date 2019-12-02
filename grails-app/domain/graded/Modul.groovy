@@ -2,55 +2,58 @@ package graded
 
 class Modul {
 
-    String modulKuerzel;
-    String modulBezeichnung;
+    String kuerzel;
+
+    String bezeichnung;
+
     String dozent;
+
     int credits;
 
-    // Default ist true, die meisten Module haben eine MSP
-    boolean hasMsp = true;
-    // Default ist false, nur wenige Module haben eine Testat Arbeit
-    boolean isTestat = false;
-    boolean hasTestat = false;
+    boolean hasMsp = true; // Default ist true, die meisten Module haben eine MSP
 
-    static hasMany = [ens: Note]
+    boolean hasTestat = false;    // Default ist false, nur wenige Module haben eine Testat Arbeit
+
+    boolean testatPassed;
+
     Note msp;
+
+    static hasMany = [noten: Note]
 
     static belongsTo = [semester: Semester]
 
-
-    boolean completed() {
-        return hasMsp && !msp || isTestat && hasTestat
+    boolean isCompleted() {
+        return (hasMsp && msp) || hasTestat && testatPassed || !hasMsp && noten.findAll {
+            it.note != null || it.note > 0
+        }.size() == noten.size()
     }
 
-    double erfahrungsnote() {
+    double getErfahrungsnote() {
         double en = 0
-        for (Note note : ens) {
-            en += (note.note * note.gewichtung)
+        for (Note note : noten) {
+            if (note.note != null)
+                en += (note.note * note.gewichtung)
         }
         return en
     }
 
-    double modulnote() {
-        double modulnote = erfahrungsnote()
+    double getModulnote() {
+        double modulnote = getErfahrungsnote()
         if (hasMsp && msp != null && msp.note > 0) {
             modulnote = Math.round((msp.note + modulnote) / 2 * 2) / 2
         }
         return modulnote
     }
 
-    boolean passed() {
-        return (hasMsp && msp && (3.75 <= modulnote())) || isTestat && hasTestat
+    boolean isPassed() {
+        return (hasMsp && msp && (3.75 <= getModulnote())) || testatPassed && hasTestat || !hasMsp && (3.75 <= getModulnote())
     }
 
     static constraints = {
-
-        // Mindestens das Modulkürzel muss erfasst sein
-        modulKuerzel(nullable: false)
-        modulBezeichnung(nullable: true)
+        kuerzel(nullable: false)
+        bezeichnung(nullable: true)
         dozent(nullable: true)
         msp(nullable: true)
-        ens(nullable: true)
         // Credits sind zwischen 2 für Kontext und 12 für IP6
         credits(min: 2, max: 12)
     }

@@ -1,20 +1,23 @@
 package graded
 
+import javax.persistence.Column
+
 class Note {
 
-    double note;
-
-    Note(String note){
+    Note(String note) {
         this.note = Double.valueOf(note)
     }
 
-    // Gewichtung in Prozent Werten
-    double gewichtung;
+    @Column(precision = 2, scale = 3)
+    Double note; // Note
+
+    @Column(precision = 2, scale = 3)
+    double gewichtung; // Gewichtung in Prozent Werten
 
     static belongsTo = [modul: Modul]
 
     static constraints = {
-        gewichtung(min: 0.0d, max: 1.0d)
-        note(min: 1.0d, max: 6.0d)
+        gewichtung(nullable: true, min: 0.0d, max: 1.0d)
+        note(nullable: true, max: 6.0d)
     }
 }

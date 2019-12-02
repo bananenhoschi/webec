@@ -5,6 +5,8 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class BootStrap {
 
+    ModulService modulService
+
 
     def init = { servletContext ->
 
@@ -18,83 +20,35 @@ class BootStrap {
         hs16.setJahr(16)
         hs16.save()
 
-        Modul algd1x = Modul.create()
-        algd1x.setModulKuerzel('algd1')
-        algd1x.setModulBezeichnung('Algorithmen und Datenstrukturen 1')
-        algd1x.setCredits(3)
-        algd1x.setSemester(hs16)
-
-        Note n1x = Note.create()
-        n1x.setNote((double) 3.2)
-        n1x.setGewichtung((double) 0.5)
-
-        Note n2x = Note.create()
-        n2x.setNote((double) 3.8)
-        n2x.setGewichtung((double) 0.5)
-
-        Note mspx = Note.create()
-        mspx.setNote((double) 3.8)
-        mspx.setGewichtung((double) 1.0)
-
-        Set<Note> ensx = new HashSet<>()
-        ensx.add(n1x)
-        ensx.add(n2x)
-        algd1x.setEns(ensx)
-        algd1x.setMsp(mspx)
-        algd1x.save()
-
         Modul algd1 = Modul.create()
-        algd1.setModulKuerzel('algd1')
-        algd1.setModulBezeichnung('Algorithmen und Datenstrukturen 1')
+        algd1.setKuerzel('algd1')
+        algd1.setBezeichnung('Algorithmen und Datenstrukturen 1')
         algd1.setCredits(3)
         algd1.setSemester(hs19)
-
-        Note n1 = Note.create()
-        n1.setNote((double) 5.0)
-        n1.setGewichtung((double) 0.5)
-
-        Note n2 = Note.create()
-        n2.setNote((double) 4.4)
-        n2.setGewichtung((double) 0.5)
-
-        Note msp = Note.create()
-        msp.setNote((double) 4.0)
-        msp.setGewichtung((double) 1.0)
-
-        Set<Note> ens = new HashSet<>()
-        ens.add(n1)
-        ens.add(n2)
-        algd1.setEns(ens)
-        algd1.setMsp(msp)
         algd1.save()
 
-        Modul webeC = Modul.create()
-        webeC.setModulKuerzel('webeC')
-        webeC.setModulBezeichnung('Web Engineering')
-        webeC.setCredits(3)
-        webeC.setSemester(hs19)
-
-        Note n3 = Note.create()
-        n3.setNote((double) 4.0)
-        n3.setGewichtung((double) 1.0)
-
-        Set<Note> ens2 = new HashSet<>()
-        ens2.add(n3)
-        webeC.setEns(ens2)
-        webeC.save()
+        Modul webpr = Modul.create()
+        webpr.setKuerzel('webpr')
+        webpr.setBezeichnung('Web Programming')
+        webpr.setCredits(3)
+        webpr.setSemester(hs19)
+        webpr.setHasMsp(false)
+        webpr.addToNoten(Note.create())
+        webpr.save()
 
         Modul webfr = Modul.create()
-        webfr.setModulKuerzel('webfr')
-        webfr.setModulBezeichnung('Web Frameworks')
+        webfr.setKuerzel('webfr')
+        webfr.setBezeichnung('Web Frameworks')
         webfr.setCredits(3)
         webfr.setSemester(hs19)
+        webfr.setNoten(Set.of())
         webfr.save()
 
         Modul agrh = Modul.create()
-        agrh.setModulKuerzel('agrh')
-        agrh.setModulBezeichnung('Argumentation und Rethorik')
+        agrh.setKuerzel('agrh')
+        agrh.setBezeichnung('Argumentation und Rethorik')
         agrh.setCredits(2)
-        agrh.setIsTestat(true)
+        agrh.setHasTestat(true)
         agrh.setSemester(hs19)
         agrh.save()
 
