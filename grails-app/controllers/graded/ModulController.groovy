@@ -13,7 +13,7 @@ class ModulController {
     def index() {
         List<Modul> module = modulService.list()
         int maxEns = module.max { m -> m.getNoten().size() }.getNoten().size()
-        respond module, model: [semesterCount: modulService.count(), maxENs: maxEns]
+        respond module, view: 'index', model: [semesterCount: modulService.count(), maxENs: maxEns]
     }
 
     def show(Long id) {
@@ -58,7 +58,7 @@ class ModulController {
             for (Note n : modul.noten) {
                 Double note = params.getDouble("note-" + n.id)
                 n.setNote(note)
-                Double gewichtung = Double.valueOf(params.getDouble("gewichtung-"+n.id))
+                Double gewichtung = Double.valueOf(params.getDouble("gewichtung-" + n.id))
                 n.setGewichtung(gewichtung)
             }
             modulService.save(modul)
