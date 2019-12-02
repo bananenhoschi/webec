@@ -23,9 +23,7 @@ class Modul {
     static belongsTo = [semester: Semester]
 
     boolean isCompleted() {
-        return (hasMsp && msp) || hasTestat && testatPassed || !hasMsp && noten.findAll {
-            it.note != null || it.note > 0
-        }.size() == noten.size()
+        return (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && !getNoten().any {it.getNote() != null && it.getNote() == 0 })
     }
 
     double getErfahrungsnote() {
@@ -46,7 +44,7 @@ class Modul {
     }
 
     boolean isPassed() {
-        return (hasMsp && msp && (3.75 <= getModulnote())) || testatPassed && hasTestat || !hasMsp && (3.75 <= getModulnote())
+        return (testatPassed && hasTestat) || (hasMsp && msp != null && getModulnote() >= 3.75) || (!hasMsp && getModulnote() >= 3.75)
     }
 
     static constraints = {
