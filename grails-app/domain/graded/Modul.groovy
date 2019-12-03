@@ -16,6 +16,8 @@ class Modul {
 
     boolean testatPassed;
 
+    boolean angerechnet;
+
     Note msp;
 
     static hasMany = [noten: Note]
@@ -23,16 +25,18 @@ class Modul {
     static belongsTo = [semester: Semester]
 
     boolean isCompleted() {
-        return (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && !getNoten().any {it.getNote() != null && it.getNote() == 0 })
+        return (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && !getNoten().any {
+            it.getNote() != null && it.getNote() == 0
+        })
     }
 
     double getErfahrungsnote() {
         double en = 0
         for (Note note : noten) {
             if (note.note != null)
-                en += (note.note * note.gewichtung)
+                en += (note.note)
         }
-        return en
+        return (Math.round((en / noten.size()) * 10)) / 10
     }
 
     double getModulnote() {

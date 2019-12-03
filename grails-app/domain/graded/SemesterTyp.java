@@ -2,6 +2,7 @@ package graded;
 
 public enum SemesterTyp {
 
+    PRE("Vorbildung"),
     HS("Herbstsemester"),
     FS("Frühlingsemseter");
 

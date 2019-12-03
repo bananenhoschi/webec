@@ -12,7 +12,7 @@ class Note {
     Double note; // Note
 
     @Column(precision = 2, scale = 3)
-    double gewichtung; // Gewichtung in Prozent Werten
+    Double gewichtung; // Gewichtung in Prozent Werten
 
     static belongsTo = [modul: Modul]
 

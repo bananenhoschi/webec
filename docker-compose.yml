@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    image: "postgres"
+    container_name: "postgres-graded"
+    environment:
+      - POSTGRES_USER=graded
+      - POSTGRES_PASSWORD=graded
+      - POSTGRES_DB=graded
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data

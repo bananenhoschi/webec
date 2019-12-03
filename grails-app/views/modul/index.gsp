@@ -33,9 +33,7 @@
         <td>${modul.credits}</td>
         <g:if test="${modul.noten}">
             <g:each var="en" in="${modul.noten.init()}">
-                <td><<g:if test="${!en.note}">
-
-                </g:if></td>
+                <td>${en.note}</td>
             </g:each>
             <td colspan="${maxENs - modul.noten?.size() + 1}">${modul.noten.last().note}</td>
         </g:if>
@@ -46,34 +44,43 @@
             <td colspan="${maxENs}"></td>
         </g:else>
         <td>
-            <g:if test="${modul.getErfahrungsnote() > 0}">
-                ${modul.getErfahrungsnote()}
+            <g:if test="${modul.angerechnet}">
             </g:if>
+            <g:elseif test="${modul.erfahrungsnote > 0}">
+                ${modul.erfahrungsnote}
+            </g:elseif>
             <g:else>
                 -
             </g:else>
         </td>
         <td>
             <g:if test="${modul.hasMsp}">
-                <g:if test="${modul.msp}">
-                    ${modul.msp.note}
+                <g:if test="${modul.hasTestat || modul.angerechnet}">
                 </g:if>
-                <g:elseif test="${modul.hasTestat}">
+                <g:elseif test="${modul.msp}">
+                    ${modul.msp.note}
                 </g:elseif>
                 <g:else>
                     -
                 </g:else>
             </g:if>
+            <g:elseif test="${modul.angerechnet}">
+
+            </g:elseif>
             <g:else>
                 Keine MSP
             </g:else>
         </td>
-        <td>${modul.getModulnote()}</td>
         <td>
-            <g:if test="${modul.isPassed()}">
+            <g:if test="${modul.angerechnet}">
+            </g:if>
+            <g:else>${modul.modulnote}</g:else>
+        </td>
+        <td>
+            <g:if test="${modul.passed}">
                 <span class="oi oi-check" title="bestanden"></span>
             </g:if>
-            <g:elseif test="${modul.isCompleted()}">
+            <g:elseif test="${modul.completed}">
                 <span class="oi oi-clock" title="offen"></span>
             </g:elseif>
             <g:else>
