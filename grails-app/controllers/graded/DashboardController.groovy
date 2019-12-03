@@ -17,8 +17,11 @@ class DashboardController {
         List<Modul> nichtBestanden = module.findAll { !it.isPassed() }
         List<Modul> aktuell = module.findAll { !it.isCompleted() }
 
+        int ectsBestanden = bestanden.sum { it.credits }
+        int ectsNichtBestanden = nichtBestanden.sum { it.credits }
+        int ectsAktuell = aktuell.sum { it.credits }
 
-        respond view: 'index', model: [bestanden: bestanden, nichtBestanden: nichtBestanden, aktuell: aktuell, max: MAX_ECTS]
+        respond module, view: 'index', model: [ectsBestanden: ectsBestanden, ectsNichtBestanden: ectsNichtBestanden, ectsAktuell: ectsAktuell, aktuell: aktuell, max: MAX_ECTS]
 
     }
 

@@ -23,7 +23,6 @@
                 <% aktuell.each { modul -> %>
                 <tbody>
                 <tr>
-                    <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
                     <td><g:link action="edit" id="${modul.id}">${modul.kuerzel}</g:link></td>
                     <td>
                         <g:if test="${modul.getErfahrungsnote() > 0}">
@@ -68,18 +67,40 @@
 
         <div class="col-sm card ml-2">
 
-            <div width="220" height="220" style="margin: 20px">
-                <!--  <div style="width: <g:if
-                        test="${nichtBestanden?.size()} == 0">0px</g:if><g:else>${nichtBestanden?.size()}px</g:else>; height:20px; background-color: darkred">${nichtBestanden?.size()}</div>
-                <div style="width: <g:if
-                        test="${bestanden?.size()} == 0">0px</g:if><g:else>${bestanden?.size()}px</g:else>; height:20px; background-color: #1e7e34">${bestanden?.size()}</div>-->
-                <canvas id="progress" style="margin: 10px;"/>
+            <div width="320" height="320" style="margin: 20px">
+                <canvas id="max" style="position: absolute"></canvas>
+
+                <canvas id="bestanden" style="position: absolute"></canvas>
+                <canvas id="nichtBestanden" style="position: absolute"></canvas>
+               <h1> ${ectsBestanden}</h1>
                 <script>
-                    var c = document.getElementById("progress");
+
+                    var c = document.getElementById("max");
                     var ctx = c.getContext("2d");
                     ctx.beginPath();
-                    ctx.arc(100, 100, 50, 0 * Math.PI, 1.5 * Math.PI);
-                    ctx.strokeStyle = "#FF0000";
+                    ctx.fillStyle = "#787878";
+                    ctx.fillRect(0, 0, 180, 40);
+                    ctx.stroke();
+
+                    var c = document.getElementById("bestanden");
+                    var ctx = c.getContext("2d");
+                    ctx.beginPath();
+                    ctx.fillStyle = "#00B300";
+                    ctx.fillRect(0, 0, ${ectsBestanden}, 40);
+                    ctx.stroke();
+
+                    var c = document.getElementById("bestanden");
+                    var ctx = c.getContext("2d");
+                    ctx.beginPath();
+                    ctx.fillStyle = "#ffe722";
+                    ctx.fillRect( ${ectsBestanden}, 0, ${ectsAktuell}, 40);
+                    ctx.stroke();
+
+                    var c = document.getElementById("nichtBestanden");
+                    var ctx = c.getContext("2d");
+                    ctx.beginPath();
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect(0, 0, ${ectsNichtBestanden}, 40);
                     ctx.stroke();
                 </script>
             </div>
