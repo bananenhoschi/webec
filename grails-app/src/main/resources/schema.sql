@@ -51,7 +51,7 @@ create table if not exists note
 	version bigint not null,
 	gewichtung double precision,
 	note double precision,
-	modul_id bigint not null
+	modul_id bigint
 		constraint fk_modul
 			references modul
 );

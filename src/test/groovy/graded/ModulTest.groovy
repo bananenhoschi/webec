@@ -85,4 +85,49 @@ class ModulTest extends GroovyTestCase {
         assertTrue(m.isCompleted())
 
     }
+
+    void testIsCompleted() {
+        Modul m = new Modul()
+        m.setHasMsp(true)
+
+        Note en = new Note()
+        en.setNote(4.0)
+        en.setGewichtung(1.0)
+        m.setNoten(Set.of(en))
+
+        Note msp = new Note()
+        msp.setNote(4.0)
+        msp.setGewichtung(1.0)
+        m.setMsp(msp)
+
+        assertTrue(m.isPassed())
+        assertTrue(m.isCompleted())
+    }
+
+    void testCompletedButNotPassed() {
+        Modul m = new Modul()
+        m.setHasMsp(true)
+
+        Note en = new Note()
+        en.setNote(3.0)
+        en.setGewichtung(1.0)
+        m.setNoten(Set.of(en))
+
+        Note msp = new Note()
+        msp.setNote(3.0)
+        msp.setGewichtung(1.0)
+        m.setMsp(msp)
+
+        assertFalse(m.isPassed())
+        assertTrue(m.isCompleted())
+    }
+
+    void testNotCompletedNoMsp() {
+        Modul m = new Modul()
+        m.setHasMsp(false)
+
+
+        assertFalse(m.isPassed())
+        assertFalse(m.isCompleted())
+    }
 }

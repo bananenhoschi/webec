@@ -1,8 +1,7 @@
 package graded
 
-import grails.gorm.transactions.Transactional
-import grails.validation.ValidationException
 
+import grails.validation.ValidationException
 
 class ModulController {
 
@@ -26,7 +25,6 @@ class ModulController {
         respond new Modul(params)
     }
 
-    @Transactional
     def save(Modul modul) {
         if (modul == null) {
             return
@@ -50,26 +48,14 @@ class ModulController {
         respond modulService.get(id)
     }
 
-    @Transactional
     def update(Modul modul) {
         if (modul == null) {
             return
         }
 
-        try {
-            for (Note n : modul.noten) {
-                Double note = params.getDouble("note-" + n.id)
-                n.setNote(note)
-                Double gewichtung = Double.valueOf(params.getDouble("gewichtung-" + n.id))
-                n.setGewichtung(gewichtung)
-            }
-            modulService.save(modul)
-        } catch (ValidationException e) {
-            respond modul.errors, view: 'edit'
-            return
-        }
+        modulService.save(modul)
 
-        redirect(action: "index")
+        redirect(view: 'index')
     }
 
 }
