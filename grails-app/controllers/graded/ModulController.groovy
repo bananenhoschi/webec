@@ -12,9 +12,11 @@ class ModulController {
 
     def index() {
         List<Modul> module = modulService.list()
-        int maxEns = module.max { m -> m.getNoten().size() }.getNoten().size()
+        Modul maxModul = module.max { m -> m.getNoten() != null ? m.getNoten().size() : 0 }
+        int maxEns = maxModul != null && maxModul.getNoten() != null ? maxModul.getNoten().size() : 0
         respond module, view: 'index', model: [semesterCount: modulService.count(), maxENs: maxEns]
     }
+
 
     def show(Long id) {
         respond modulService.get(id)
