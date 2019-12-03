@@ -11,4 +11,5 @@
 *= require mobile
 *= require Chart
 *= require_self
+*= require main
 */

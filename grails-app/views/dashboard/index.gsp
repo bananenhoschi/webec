@@ -23,7 +23,7 @@
                 <% aktuell.each { modul -> %>
                 <tbody>
                 <tr>
-                    <td><g:link action="edit" id="${modul.id}">${modul.kuerzel}</g:link></td>
+                    <td>${modul.kuerzel}</td>
                     <td>
                         <g:if test="${modul.getErfahrungsnote() > 0}">
                             ${modul.getErfahrungsnote()}
@@ -72,6 +72,7 @@
 
                 <canvas id="bestanden" style="position: absolute"></canvas>
                 <canvas id="nichtBestanden" style="position: absolute"></canvas>
+                <canvas id="aktuell" style="position: absolute"></canvas>
                <h1> ${ectsBestanden}</h1>
                 <script>
 
@@ -85,11 +86,11 @@
                     var c = document.getElementById("bestanden");
                     var ctx = c.getContext("2d");
                     ctx.beginPath();
-                    ctx.fillStyle = "#00B300";
+                    ctx.fillStyle = "#3e9712";
                     ctx.fillRect(0, 0, ${ectsBestanden}, 40);
                     ctx.stroke();
 
-                    var c = document.getElementById("bestanden");
+                    var c = document.getElementById("aktuell");
                     var ctx = c.getContext("2d");
                     ctx.beginPath();
                     ctx.fillStyle = "#ffe722";
@@ -99,7 +100,7 @@
                     var c = document.getElementById("nichtBestanden");
                     var ctx = c.getContext("2d");
                     ctx.beginPath();
-                    ctx.fillStyle = "#FF0000";
+                    ctx.fillStyle = "#f63a18";
                     ctx.fillRect(0, 0, ${ectsNichtBestanden}, 40);
                     ctx.stroke();
                 </script>

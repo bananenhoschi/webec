@@ -9,6 +9,7 @@ class DashboardController {
     def index() {
 
 
+
         List<Modul> module = modulService.list()
 
         List<Modul> bestanden = module.findAll {
