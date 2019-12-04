@@ -1,12 +1,78 @@
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (0,0,'PRE',0);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (1,0,'HS',16);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (2,0,'FS',17);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (3,0,'HS',17);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (4,0,'FS',18);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (5,0,'HS',18);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (6,0,'FS',19);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (7,0,'HS',19);
-INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (8,0,'FS',20);
+alter table modul
+    drop constraint fk_msp_note;
+
+drop table note;
+
+drop table modul;
+
+drop table semester;
+
+
+
+create table if not exists semester
+(
+	id bigint not null
+		constraint semester_pkey
+			primary key,
+	version bigint not null,
+	semester_typ varchar(255) not null,
+	jahr integer not null
+);
+
+alter table semester owner to graded;
+
+create table if not exists modul
+(
+	id bigint not null
+		constraint modul_pkey
+			primary key,
+	version bigint not null,
+	has_testat boolean not null,
+	bezeichnung varchar(255),
+	angerechnet boolean not null,
+	dozent varchar(255),
+	has_msp boolean not null,
+	testat_passed boolean not null,
+    anzahl_noten int,
+	msp_id bigint,
+	credits integer not null,
+	semester_id bigint not null
+		constraint fk_semester
+			references semester,
+	kuerzel varchar(255) not null
+);
+
+alter table modul owner to graded;
+
+create table if not exists note
+(
+	id bigint not null
+		constraint note_pkey
+			primary key,
+	version bigint not null,
+	gewichtung double precision,
+	note double precision,
+	modul_id bigint
+		constraint fk_modul
+			references modul
+);
+
+alter table note owner to graded;
+
+alter table modul
+	add constraint fk_msp_note
+		foreign key (msp_id) references note;
+
+
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (0,0,'VOR',0);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (1,0,'HS',2016);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (2,0,'FS',2017);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (3,0,'HS',2017);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (4,0,'FS',2018);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (5,0,'HS',2018);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (6,0,'FS',2019);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (7,0,'HS',2019);
+INSERT INTO SEMESTER (ID, VERSION, SEMESTER_TYP, JAHR) VALUES (8,0,'FS',2020);
 
 INSERT INTO MODUL (ID, KUERZEL, CREDITS, SEMESTER_ID,  ANGERECHNET, HAS_MSP, HAS_TESTAT,TESTAT_PASSED, VERSION) VALUES (1,'syspr',3,0,true,false,false,false,0);
 INSERT INTO MODUL (ID, KUERZEL, CREDITS, SEMESTER_ID,  ANGERECHNET, HAS_MSP, HAS_TESTAT,TESTAT_PASSED, VERSION) VALUES (2,'Praxisimersion 1',3,0,true,false,false,false,0);
