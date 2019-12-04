@@ -95,12 +95,11 @@
 
         <div class="form-group card card-body">
             <h3>Noten:</h3>
-        <!-- TODO @ribeaud  -->
         <g:each in="${this.modul.noten}" var="note">
             <div class="form-row">
                 <div class="col form-inline col-sm-4">
                     <label class="col-sm-2 col-form-label col-form-label">Note:</label>
-                    <input type="number" value="${fieldValue(bean: note, field: 'note')}" />
+                    <input type="number" value="${fieldValue(bean: note, field: 'note')}"/>
                 </div>
 
             </div>

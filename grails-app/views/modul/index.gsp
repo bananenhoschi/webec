@@ -7,8 +7,11 @@
 
 <body>
 <h2>Modulnoten</h2>
-<g:link controller="modul" action="create" class="btn btn-outline-success float-right"><span
-        class="oi oi-plus"></span> Neues Modul</g:link>
+<div>
+<g:link controller="modul" action="create" class="btn btn-outline-success float-right">
+    <span class="oi oi-plus"></span> Neues Modul
+</g:link>
+</div>
 <div class="card">
     <table class="table">
         <thead>
@@ -18,14 +21,14 @@
             <th>Bezeichnung</th>
             <th>Dozent</th>
             <th>Credits</th>
-            <th colspan="${maxENs}">Semesternoten</th>
+            <th colspan="${hoechsteAnzahlNoten}">Semesternoten</th>
             <th>EN</th>
             <th>MSP</th>
             <th>Modulnote</th>
             <th></th>
         </tr>
         </thead>
-        <% modulList.each { modul -> %>
+        <% module.each { modul -> %>
         <tr>
             <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
             <td><g:link action="edit" id="${modul.id}">${modul.kuerzel}</g:link></td>
@@ -36,13 +39,13 @@
                 <g:each var="en" in="${modul.noten.init()}">
                     <td>${en.note}</td>
                 </g:each>
-                <td colspan="${maxENs - modul.noten?.size() + 1}">${modul.noten.last().note}</td>
+                <td colspan="${hoechsteAnzahlNoten - modul.noten?.size() + 1}">${modul.noten.last().note}</td>
             </g:if>
             <g:elseif test="${modul.hasTestat}">
-                <td colspan="${maxENs}">Testat</td>
+                <td colspan="${hoechsteAnzahlNoten}">Testat</td>
             </g:elseif>
             <g:else>
-                <td colspan="${maxENs}"></td>
+                <td colspan="${hoechsteAnzahlNoten}"></td>
             </g:else>
 
             <td>
