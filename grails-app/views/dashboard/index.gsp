@@ -9,6 +9,7 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col-sm card mr-2">
+
             <h3>Aktuelles Semester</h3>
             <table class="table">
                 <thead>
@@ -20,7 +21,7 @@
                     <th></th>
                 </tr>
                 </thead>
-                <% aktuell.each { modul -> %>
+                <% module.each { modul -> %>
                 <tbody>
                 <tr>
                     <td>${modul.kuerzel}</td>
