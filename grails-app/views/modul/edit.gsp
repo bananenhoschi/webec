@@ -99,16 +99,10 @@
         <g:each in="${this.modul.noten}" var="note">
             <div class="form-row">
                 <div class="col form-inline col-sm-4">
-                    <label for="note-${note.id}" class="col-sm-2 col-form-label col-form-label">Note:</label>
-                    <input type="number" id="note-${note.id}" name="note-${note.id}" value="${note.note}"
-                           class="form-control col-sm-2" step="0.01"/>
+                    <label class="col-sm-2 col-form-label col-form-label">Note:</label>
+                    <input type="number" value="${fieldValue(bean: note, field: 'note')}" />
                 </div>
 
-                <div class="col form-inline col-sm-4">
-                    <label for="note-${note.id}" class="col-sm-3 col-form-label col-form-label">Gewichtung:</label>
-                    <input type="number" id="gewichtung-${note.id}" name="gewichtung-${note.id}"
-                           value="${note.gewichtung}" class="form-control col-sm-2" step="0.01"/>
-                </div>
             </div>
         </g:each>
         <g:if test="${this.modul.hasMsp}">

@@ -10,6 +10,8 @@ class Modul {
 
     int credits;
 
+    Integer anzahlNoten;
+
     boolean hasMsp = true; // Default ist true, die meisten Module haben eine MSP
 
     boolean hasTestat = false;    // Default ist false, nur wenige Module haben eine Testat Arbeit
@@ -24,10 +26,11 @@ class Modul {
 
     static belongsTo = [semester: Semester]
 
+
     boolean isCompleted() {
         return angerechnet || (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && noten != null && !noten.any {
             it.getNote() != null && it.getNote() == 0
-        })
+        } && noten.size() == anzahlNoten)
     }
 
     double getErfahrungsnote() {
@@ -54,6 +57,10 @@ class Modul {
         return angerechnet || (testatPassed && hasTestat) || (hasMsp && msp != null && getModulnote() >= 3.75) || (!hasMsp && getModulnote() >= 3.75)
     }
 
+    static mapping = {
+        id generator: 'sequence', params: [sequence_name: 'modul_seq']
+    }
+
     static constraints = {
         kuerzel(nullable: false)
         bezeichnung(nullable: true)
@@ -61,5 +68,15 @@ class Modul {
         msp(nullable: true)
         // Credits sind zwischen 2 für Kontext und 12 für IP6
         credits(min: 2, max: 12)
+    }
+
+
+    @Override
+    String toString() {
+        return "Modul{" +
+                "id=" + id +
+                ", version=" + version +
+                ", kuerzel='" + kuerzel + '\'' +
+                '}';
     }
 }

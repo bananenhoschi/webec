@@ -10,7 +10,7 @@ class ModulController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-        List<Modul> module = modulService.list()
+        List<Modul> module = modulService.list().sort { a, b -> b.semester.jahr <=> a.semester.jahr }
         Modul maxModul = module.max { m -> m.getNoten() != null ? m.getNoten().size() : 0 }
         int maxEns = maxModul != null && maxModul.getNoten() != null ? maxModul.getNoten().size() : 0
         respond module, view: 'index', model: [semesterCount: modulService.count(), maxENs: maxEns]
@@ -32,6 +32,7 @@ class ModulController {
 
         try {
             int anzahlNoten = params.anzahlNoten == "" ? 0 : Integer.valueOf(params.anzahlNoten)
+            modul.setAnzahlNoten(anzahlNoten)
             for (int i = 0; i < anzahlNoten; i++) {
                 modul.addToNoten(Note.create())
             }

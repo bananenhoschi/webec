@@ -25,7 +25,7 @@
             <label for="kuerzel" class="col-md-2 col-form-label col-form-label-md">Kürzel:</label>
 
             <div class="col-md-10">
-                <g:textField id="kuerzel" name="modulKuerzel" value="${this.modul.kuerzel}"
+                <g:textField id="kuerzel" name="kuerzel" value="${this.modul.kuerzel}"
                              class="form-control form-control-md col-md-1"/>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <label for="bezeichnung" class="col-md-2 col-form-label col-form-label-md">Bezeichnung:</label>
 
             <div class="col-md-10">
-                <g:textField id="bezeichnung" name="modulBezeichnung" value="${this.modul.bezeichnung}"
+                <g:textField id="bezeichnung" name="bezeichnung" value="${this.modul.bezeichnung}"
                              class="form-control form-control-md col-md-3"/>
             </div>
         </div>
