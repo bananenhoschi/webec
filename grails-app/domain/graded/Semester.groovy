@@ -15,7 +15,8 @@ class Semester {
     static constraints = {
         jahr(min: 10, max: 99)
     }
-
+    
+    // TODO Use Lombok
     boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
@@ -30,6 +31,7 @@ class Semester {
         return true
     }
 
+    // TODO Use Lombok
     int hashCode() {
         int result
         result = (semesterTyp != null ? semesterTyp.hashCode() : 0)
@@ -43,6 +45,5 @@ class Semester {
     String toString() {
         return semesterTyp.name() + ' ' + jahr
     }
-
 
 }

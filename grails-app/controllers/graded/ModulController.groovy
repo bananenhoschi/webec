@@ -12,7 +12,10 @@ class ModulController {
     def index() {
 
         // Alle Module laden und sortieren nach Semester (desc)
-        List<Modul> module = modulService.list().sort { a, b -> b.semester.jahr <=> a.semester.jahr }
+        List<Modul> module = modulService.list().sort { a, b ->
+            int res = b.semester.jahr <=> a.semester.jahr
+            return res ?: b.semester.semesterTyp <=> a.semester.semesterTyp
+        }
 
         // Das Modul filtern welches die meisten Noten hat (wird für die Darstellung der Spalten benötigt)
         Modul modulMitMeistenNoten = module.max { m -> m.getNoten() != null ? m.getNoten().size() : 0 }

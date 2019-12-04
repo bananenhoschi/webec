@@ -3,8 +3,8 @@ package graded;
 public enum SemesterTyp {
 
     VOR("Vorbildung"),
-    HS("Herbstsemester"),
-    FS("Frühlingsemseter");
+    FS("Frühlingsemseter"),
+    HS("Herbstsemester");
 
     String name;
 

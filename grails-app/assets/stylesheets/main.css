@@ -15,3 +15,18 @@ h3 {
     color: #000;
     font-size: 1.2em;
 }
+
+.passed {
+    color: #3e9712;
+}
+
+.failed {
+    color: #950016;
+}
+
+.active {
+
+    background-image: linear-gradient(180deg, lightgray, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
