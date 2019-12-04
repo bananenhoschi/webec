@@ -10,30 +10,29 @@ class ModulController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
+
+        // Alle Module laden und sortieren nach Semester (desc)
         List<Modul> module = modulService.list().sort { a, b -> b.semester.jahr <=> a.semester.jahr }
-        Modul maxModul = module.max { m -> m.getNoten() != null ? m.getNoten().size() : 0 }
-        int maxEns = maxModul != null && maxModul.getNoten() != null ? maxModul.getNoten().size() : 0
-        respond module, view: 'index', model: [semesterCount: modulService.count(), maxENs: maxEns]
+
+        // Das Modul filtern welches die meisten Noten hat (wird für die Darstellung der Spalten benötigt)
+        Modul modulMitMeistenNoten = module.max { m -> m.getNoten() != null ? m.getNoten().size() : 0 }
+
+        // Zählen der Noten
+        int hoechsteAnzahlNoten = modulMitMeistenNoten != null && modulMitMeistenNoten.getNoten() != null ? modulMitMeistenNoten.getNoten().size() : 0
+
+        render view: 'index', model: [module: module, hoechsteAnzahlNoten: hoechsteAnzahlNoten]
     }
 
-
-    def show(Long id) {
-        respond modulService.get(id)
-    }
 
     def create() {
         respond new Modul(params)
     }
 
     def save(Modul modul) {
-        if (modul == null) {
-            return
-        }
+        if (modul == null) return // TODO throw Error
 
         try {
-            int anzahlNoten = params.anzahlNoten == "" ? 0 : Integer.valueOf(params.anzahlNoten)
-            modul.setAnzahlNoten(anzahlNoten)
-            for (int i = 0; i < anzahlNoten; i++) {
+            for (int i = 0; i < modul.anzahlNoten; i++) {
                 modul.addToNoten(Note.create())
             }
             modulService.save(modul)
@@ -46,13 +45,11 @@ class ModulController {
     }
 
     def edit(Long id) {
-        respond modulService.get(id)
+        render view: 'edit', model: [modul: modulService.get(id)]
     }
 
     def update(Modul modul) {
-        if (modul == null) {
-            return
-        }
+        if (modul == null) return // TODO throw Error
 
         modulService.save(modul)
 

@@ -2,11 +2,11 @@ package graded;
 
 public enum SemesterTyp {
 
-    PRE("Vorbildung"),
+    VOR("Vorbildung"),
     HS("Herbstsemester"),
     FS("Frühlingsemseter");
 
-    private String name;
+    String name;
 
     SemesterTyp(String name) {
         this.name = name;

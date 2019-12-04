@@ -66,17 +66,7 @@ class Modul {
         bezeichnung(nullable: true)
         dozent(nullable: true)
         msp(nullable: true)
-        // Credits sind zwischen 2 für Kontext und 12 für IP6
-        credits(min: 2, max: 12)
+        credits(min: 2, max: 12) // Credits sind zwischen 2 für Kontext und 12 für IP6
     }
 
-
-    @Override
-    String toString() {
-        return "Modul{" +
-                "id=" + id +
-                ", version=" + version +
-                ", kuerzel='" + kuerzel + '\'' +
-                '}';
-    }
 }

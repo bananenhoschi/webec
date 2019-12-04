@@ -11,9 +11,6 @@ class Note {
     @Column(precision = 2, scale = 3)
     Double note; // Note
 
-    @Column(precision = 2, scale = 3)
-    Double gewichtung; // Gewichtung in Prozent Werten
-
     static belongsTo = [modul: Modul]
 
     static mapping = {
@@ -25,14 +22,4 @@ class Note {
         note(nullable: true, max: 6.0d)
     }
 
-
-    @Override
-    public String toString() {
-        return "Note{" +
-                "id=" + id +
-                ", version=" + version +
-                ", modul=" + modul +
-                ", note=" + note +
-                '}';
-    }
 }
