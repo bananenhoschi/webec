@@ -18,7 +18,7 @@ class DashboardController {
 
         // Filtere alle Module die nicht bestanden sind
         List<Modul> nichtBestanden = module.findAll {
-            !it.isPassed()
+            !it.isPassed() && it.isCompleted()
         }
 
         // Filtere alle Module die aktuell besucht werden und noch nicht bestanden sind

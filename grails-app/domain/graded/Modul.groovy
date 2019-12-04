@@ -29,7 +29,7 @@ class Modul {
 
     boolean isCompleted() {
         return angerechnet || (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && noten != null && !noten.any {
-            it.getNote() != null && it.getNote() == 0
+            it.getNote() != null && it.getNote() > 0
         } && noten.size() == anzahlNoten)
     }
 
