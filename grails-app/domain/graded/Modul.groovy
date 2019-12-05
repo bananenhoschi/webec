@@ -14,7 +14,7 @@ class Modul {
 
     boolean hasMsp = true; // Default ist true, die meisten Module haben eine MSP
 
-    boolean hasTestat = false;    // Default ist false, nur wenige Module haben eine Testat Arbeit
+    boolean hasTestat = false; // Default ist false, nur wenige Module haben eine Testat Arbeit
 
     boolean testatPassed;
 
@@ -48,7 +48,7 @@ class Modul {
     double getModulnote() {
         double modulnote = getErfahrungsnote()
         if (hasMsp && msp != null && msp.note > 0) {
-            modulnote = Math.round((msp.note + modulnote) / 2 * 2) / 2
+            modulnote = (Math.round(((msp.note + modulnote) / 2) * 2)) / 2
         }
         return modulnote
     }

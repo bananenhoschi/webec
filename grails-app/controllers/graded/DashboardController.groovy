@@ -36,7 +36,15 @@ class DashboardController {
             !it.semester.equals(aktuellesSemester)
         }
 
-        render view: 'index', model: [module: module, ectsBestanden: ectsBestanden, ectsNichtBestanden: ectsNichtBestanden, ectsAktuell: ectsAktuell, aktuell: aktuell, max: MAX_ECTS]
+        render view: 'index', model: [
+                module            : module,
+                ectsBestanden     : ectsBestanden,
+                ectsNichtBestanden: ectsNichtBestanden,
+                ectsAktuell       : ectsAktuell,
+                aktuell           : aktuell,
+                avg               : notenDurchschnitt(),
+                avgGewichtet      : notenDurchschnittGewichtet(),
+                max               : MAX_ECTS]
 
     }
 
@@ -54,6 +62,36 @@ class DashboardController {
             return semesterService.findByJahrAndSemesterTyp(currentYear, SemesterTyp.FS)
         else if (periodeHS.contains(currentMonth))
             return semesterService.findByJahrAndSemesterTyp(currentYear, SemesterTyp.HS)
+    }
+
+    // TODO Unit Test
+    def notenDurchschnitt() {
+        List<Modul> module = modulService.list()
+        int anzahl = 0
+        double sum = 0.0
+
+        for (Modul m : module) {
+            if (m.isPassed() && m.getModulnote() != 0.0 as double) {
+                sum = sum + m.getModulnote()
+                anzahl = anzahl + 1
+            }
+        }
+        return (Math.round((sum / anzahl) * 100)) / 100
+    }
+
+    // TODO Unit Test
+    def notenDurchschnittGewichtet() {
+        List<Modul> module = modulService.list()
+        int anzahlGewichtet = 0
+        double sumGewichtet = 0.0
+
+        for (Modul m : module) {
+            if (m.isPassed() && m.getModulnote() != 0.0 as double) {
+                sumGewichtet = sumGewichtet + (m.getModulnote() * m.getCredits())
+                anzahlGewichtet = anzahlGewichtet + (m.getCredits())
+            }
+        }
+        return (Math.round((sumGewichtet / anzahlGewichtet) * 100)) / 100
     }
 
 }

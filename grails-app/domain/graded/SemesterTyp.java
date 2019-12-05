@@ -12,4 +12,7 @@ public enum SemesterTyp {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 }

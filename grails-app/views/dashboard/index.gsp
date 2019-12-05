@@ -88,6 +88,7 @@
                 <div class="card-body">
 
                     <div width="320" height="320" style="margin: 20px">
+
                         <canvas id="max" style="position: absolute"></canvas>
 
                         <canvas id="bestanden" style="position: absolute"></canvas>
@@ -136,7 +137,15 @@
                 </div>
 
                 <div class="card-body">
-                    <h1>3.6</h1>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h1>${avg}</h1><span>Ungewichtet</span>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <h1>${avgGewichtet}</h1><span>Gewichtet</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
