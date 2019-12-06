@@ -64,6 +64,7 @@ class Modul {
     static constraints = {
         kuerzel(nullable: false)
         bezeichnung(nullable: true)
+        anzahlNoten(nullable: true)
         dozent(nullable: true)
         msp(nullable: true)
         credits(min: 2, max: 12) // Credits sind zwischen 2 für Kontext und 12 für IP6
