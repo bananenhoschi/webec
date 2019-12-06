@@ -18,13 +18,16 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="${createLink(controller: 'dashboard', action: 'index')}"><span class="oi oi-pie-chart"></span> Dashboard</a>
+                    <a class="nav-link" href="${createLink(controller: 'dashboard', action: 'index')}"><span
+                            class="oi oi-pie-chart"></span> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${createLink(controller: 'modul', action: 'index')}"><span class="oi oi-calculator"></span> Modulnoten</a>
+                    <a class="nav-link" href="${createLink(controller: 'modul', action: 'index')}"><span
+                            class="oi oi-calculator"></span> Modulnoten</a>
                 </li>
                 <li class="nav-item navbar-expand-sm">
-                    <a class="nav-link" href="#"><span class="oi oi-wrench"></span> Verwaltung</a>
+                    <a class="nav-link" href="${createLink(controller: 'admin', action: 'index')}"><span
+                            class="oi oi-wrench"></span> Verwaltung</a>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,6 @@
 package graded
 
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 
 class ModulController {
@@ -9,6 +9,7 @@ class ModulController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(Role.USER)
     def index() {
 
         // Alle Module laden und sortieren nach Semester (desc)
@@ -26,11 +27,12 @@ class ModulController {
         render view: 'index', model: [module: module, hoechsteAnzahlNoten: hoechsteAnzahlNoten]
     }
 
-
+    @Secured(Role.USER)
     def create() {
         respond new Modul(params)
     }
 
+    @Secured(Role.USER)
     def save(Modul modul) {
         if (modul == null) return // TODO throw Error
 
@@ -47,10 +49,12 @@ class ModulController {
         redirect(view: 'index')
     }
 
+    @Secured(Role.USER)
     def edit(Long id) {
         render view: 'edit', model: [modul: modulService.get(id)]
     }
 
+    @Secured(Role.USER)
     def update(Modul modul) {
         if (modul == null) return // TODO throw Error
 

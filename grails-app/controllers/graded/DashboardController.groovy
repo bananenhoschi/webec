@@ -1,5 +1,7 @@
 package graded
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class DashboardController {
 
     final static int MAX_ECTS = 180 // TODO into property
@@ -7,6 +9,7 @@ class DashboardController {
     ModulService modulService
     SemesterService semesterService
 
+    @Secured(Role.STUDENT)
     def index() {
 
         List<Modul> module = modulService.list()
@@ -93,5 +96,7 @@ class DashboardController {
         }
         return (Math.round((sumGewichtet / anzahlGewichtet) * 100)) / 100
     }
+
+
 
 }

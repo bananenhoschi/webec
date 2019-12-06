@@ -1,5 +1,7 @@
 package graded
 
+import groovy.transform.EqualsAndHashCode
+
 class Semester {
 
     SemesterTyp semesterTyp;
