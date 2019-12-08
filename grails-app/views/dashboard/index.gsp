@@ -82,7 +82,7 @@
         <div class="col-sm">
             <div class="card">
                 <div class="card-header">
-                    <h3>Dein Fortschritt</h3>
+                    <h3><span class="oi oi-bar-chart"></span> Dein Fortschritt</h3>
                 </div>
 
                 <div class="card-body">
@@ -133,7 +133,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>Dein Durchschnitt</h3>
+                    <h3>Ø Dein Durchschnitt</h3>
                 </div>
 
                 <div class="card-body">

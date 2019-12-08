@@ -13,26 +13,35 @@ class DashboardController {
     def index() {
 
         List<Modul> module = modulService.list()
+        int ectsBestanden = 0
+        int ectsNichtBestanden = 0
+        int ectsAktuell = 0
+        List<Modul> aktuell = List.of()
 
-        // Filtere alle Module die bestanden sind
-        List<Modul> bestanden = module.findAll {
-            it.isPassed()
+        if (module != null && !module.isEmpty()) {
+            // Filtere alle Module die bestanden sind
+            List<Modul> bestanden = module.findAll {
+                it.isPassed()
+            }
+
+            // Filtere alle Module die nicht bestanden sind
+            List<Modul> nichtBestanden = module.findAll {
+                !it.isPassed() && it.isCompleted()
+            }
+
+            // Filtere alle Module die aktuell besucht werden und noch nicht bestanden sind
+            aktuell = module.findAll {
+                !it.isCompleted()
+            }
+            // Zähle die Anzahl Credits
+            ectsBestanden = bestanden != null && !bestanden.isEmpty() ? bestanden.sum { it.credits } as int : 0
+            ectsNichtBestanden = nichtBestanden != null && !nichtBestanden.isEmpty() ? nichtBestanden.sum {
+                it.credits
+            } as int : 0
+            ectsAktuell = aktuell != null && !aktuell.isEmpty() ? aktuell.sum { it.credits } as int : 0
+
         }
 
-        // Filtere alle Module die nicht bestanden sind
-        List<Modul> nichtBestanden = module.findAll {
-            !it.isPassed() && it.isCompleted()
-        }
-
-        // Filtere alle Module die aktuell besucht werden und noch nicht bestanden sind
-        List<Modul> aktuell = module.findAll {
-            !it.isCompleted()
-        }
-
-        // Zähle die Anzahl Credits
-        int ectsBestanden = bestanden != null ? bestanden.sum { it.credits } as int : 0
-        int ectsNichtBestanden = nichtBestanden != null ? nichtBestanden.sum { it.credits } as int : 0
-        int ectsAktuell = aktuell != null ? aktuell.sum { it.credits } as int : 0
 
         Semester aktuellesSemester = aktuellesSemester()
         module.removeIf {
