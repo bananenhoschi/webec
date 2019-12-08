@@ -18,7 +18,6 @@ class Note {
     }
 
     static constraints = {
-        gewichtung(nullable: true, min: 0.0d, max: 1.0d)
         note(nullable: true, max: 6.0d)
     }
 

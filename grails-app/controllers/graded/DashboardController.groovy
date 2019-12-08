@@ -30,9 +30,9 @@ class DashboardController {
         }
 
         // Zähle die Anzahl Credits
-        int ectsBestanden = bestanden.sum { it.credits } as int
-        int ectsNichtBestanden = nichtBestanden.sum { it.credits } as int
-        int ectsAktuell = aktuell.sum { it.credits } as int
+        int ectsBestanden = bestanden != null ? bestanden.sum { it.credits } as int : 0
+        int ectsNichtBestanden = nichtBestanden != null ? nichtBestanden.sum { it.credits } as int : 0
+        int ectsAktuell = aktuell != null ? aktuell.sum { it.credits } as int : 0
 
         Semester aktuellesSemester = aktuellesSemester()
         module.removeIf {

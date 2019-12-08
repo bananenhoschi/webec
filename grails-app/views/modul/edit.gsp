@@ -141,6 +141,9 @@
 
         <fieldset class="buttons">
             <input class="btn btn-primary" type="submit" value="Speichern"/>
+            <g:link controller="modul" action="index" class="btn btn-outline-secondary ">
+                Abbrechen
+            </g:link>
         </fieldset>
     </g:form>
 </div>
