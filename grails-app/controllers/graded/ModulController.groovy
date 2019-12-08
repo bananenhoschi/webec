@@ -59,4 +59,10 @@ class ModulController {
         redirect(view: 'index')
     }
 
+    def delete(Long id){
+        modulService.delete(id: id)
+        redirect(view: 'index')
+
+    }
+
 }

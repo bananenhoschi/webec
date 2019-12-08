@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div id="edit-modul" class="container-fluid" role="main">
+<div id="edit-modul" class="container" role="main">
 
     <h1><g:if
             test="${this.modul.bezeichnung}">${this.modul.bezeichnung}</g:if><g:else>${this.modul.kuerzel}</g:else></h1>
@@ -138,11 +138,16 @@
                 </div>
             </div>
         </g:if>
-
+        </div>
+        <div class="card-footer">
         <fieldset class="buttons">
             <input class="btn btn-primary" type="submit" value="Speichern"/>
             <g:link controller="modul" action="index" class="btn btn-outline-secondary ">
                 Abbrechen
+            </g:link>
+            <g:link controller="modul" action="delete" params="${this.modul.id}"
+                    class="btn btn-outline-danger float-right ">
+                Löschen
             </g:link>
         </fieldset>
     </g:form>

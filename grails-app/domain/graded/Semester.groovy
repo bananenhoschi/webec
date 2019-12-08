@@ -43,7 +43,7 @@ class Semester {
 
     @Override
     String toString() {
-        return semesterTyp == SemesterTyp.VOR ? semesterTyp.getName() : semesterTyp.getName() + ' ' + jahr
+        return semesterTyp == null ? '' : semesterTyp == SemesterTyp.VOR ? semesterTyp.getName() : semesterTyp.getName() + ' ' + jahr
     }
 
 }

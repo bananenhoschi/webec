@@ -25,6 +25,10 @@
                     <a class="nav-link" href="${createLink(controller: 'modul', action: 'index')}"><span
                             class="oi oi-calculator"></span> Modulnoten</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${createLink(controller: 'semester', action: 'index')}"><span
+                            class="oi oi-calendar"></span> Semester</a>
+                </li>
                 <li class="nav-item navbar-expand-sm">
                     <a class="nav-link" href="${createLink(controller: 'admin', action: 'index')}"><span
                             class="oi oi-wrench"></span> Verwaltung</a>
