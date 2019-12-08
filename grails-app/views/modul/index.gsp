@@ -8,7 +8,9 @@
 <body>
 <div class="container-fluid">
     <div class="card">
+
         <div class="card-header">
+            <h2>Modulübersicht</h2>
             <g:link controller="modul" action="create" class="btn btn-outline-success float-right">
                 <span class="oi oi-plus"></span> Neues Modul
             </g:link>
@@ -27,6 +29,7 @@
                     <th>EN</th>
                     <th>MSP</th>
                     <th>Modulnote</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -93,6 +96,12 @@
                         <g:else>
                             <span class="oi oi-ban failed" title="nicht bestanden"></span>
                         </g:else>
+                    </td>
+                    <td class="float-right">
+                        <g:link action="edit" id="${modul.id}"><span
+                                class="oi oi-pencil col-sm-1 text-primary"></span></g:link>
+                        <g:link action="delete" id="${modul.id}" method="delete"><span
+                                class="oi oi-trash col-sm-1 text-danger"></span></g:link>
                     </td>
                 </tr>
                 <% } %>

@@ -26,15 +26,15 @@
                 </thead>
                 <tbody>
 
-                <% semesterList.each { semester -> %>
+                <% semesters.each { semester -> %>
                 <tr>
                     <td class="col-md-2">${semester.semesterTyp.getName()}</td>
                     <td>${semester.jahr}</td>
                     <td class="float-right">
                         <g:link action="edit" id="${semester.id}"><span
-                                class="oi oi-pencil"></span></g:link>
-                        <g:link action="delete" id="${semester.id}"><span
-                                class="oi oi-trash"></span></g:link>
+                                class="oi oi-pencil col-sm-1 text-primary"></span></g:link>
+                        <g:link action="delete" id="${semester.id}" method="delete"><span
+                                class="oi oi-trash col-sm-1 text-danger"></span></g:link>
                     </td>
                 </tr>
                 <% } %>

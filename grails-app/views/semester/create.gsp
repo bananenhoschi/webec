@@ -3,20 +3,18 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Graded - Semester hinzufügen</title>
+    <title>Grader - Modul hinzufügen</title>
 </head>
 
 <body>
-<div id="edit-semester" class="container" role="main">
+<div id="create-semester" class="container" role="main">
     <div class="card">
         <div class="card-header">
-            <h1>Semester hinzufügen</h1>
 
+            <h1>Modul erfassen</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-
-        <!-- Error Fields -->
             <g:hasErrors bean="${this.semester}">
                 <ul class="errors" role="alert">
                     <g:eachError bean="${this.semester}" var="error">
@@ -26,43 +24,39 @@
                 </ul>
             </g:hasErrors>
         </div>
-        <g:form resource="${this.semester}" method="PUT">
-            <div class=" card-body">
-                <g:hiddenField name="version" value="${this.semester?.version}"/>
+
+        <div class="card-body">
+            <g:form resource="${this.semester}" method="POST">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col form-inline text-left col-sm-4">
                             <label class="col-sm-3 col-form-label col-form-label text-left">Semester:</label>
                             <g:select id="semesterTyp" name="semesterTyp" from="${graded.SemesterTyp.values()}"
-                                      class="form-control" value="${this.semester?.semesterTyp}"/>
+                                      value="${fieldValue(bean: semesterTyp, field: 'semesterTyp')}"
+                                      class="form-control"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col form-inline col-sm-4">
-                            <label class="col-sm-3 col-form-label col-form-label">Jahr:</label>
-                            <g:textField id="jahr" name="jahr" value="${this.semester?.jahr}"
+                        <div class="col form-inline text-left col-sm-4">
+                            <label class="col-sm-3 col-form-label col-form-label text-left">Jahr:</label>
+                            <g:textField id="jahr" name="jahr" value="${this.semester.jahr}"
                                          class="form-control"/>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="card-footer">
-                <fieldset class="buttons">
-                    <input class="btn btn-primary" type="submit" value="Speichern"/>
+                <div class="card-footer">
+                     <fieldset class="buttons">
+                <g:submitButton name="create" class="btn btn-primary" value="Speichern"/>
                 <g:link controller="semester" action="index" class="btn btn-outline-secondary ">
                     Abbrechen
                 </g:link>
-                <g:link controller="semester" action="delete" params="${this.semester.id}"
-                        class="btn btn-outline-danger float-right ">
-                    Löschen
-                </g:link>
-            </fieldset>
-        </g:form>
+                </fieldset>
+            </g:form>
+        </div>
+        </div>
     </div>
-</div>
 </body>
 </html>

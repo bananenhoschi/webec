@@ -8,9 +8,9 @@ class SemesterController {
 
     SemesterService semesterService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT"]
 
-    def index(){
+    def index() {
         render view: 'index', model: [semesters: semesterService.list(params)]
     }
 
@@ -26,7 +26,7 @@ class SemesterController {
         if (semester == null) return // TODO throw Error
 
         try {
-          
+
             semesterService.save(semester)
         } catch (ValidationException e) {
             respond semester.errors, view: 'create'
@@ -43,10 +43,12 @@ class SemesterController {
 
         redirect(view: 'index')
     }
-    def delete(Long id){
-        semesterService.delete(id: id)
-        redirect(view: 'index')
 
+    def delete() {
+        long id = Long.valueOf(params.id)
+        Semester semester = semesterService.get(id)
+        semesterService.delete(semester.id)
+        redirect(view: 'index')
     }
 
 }

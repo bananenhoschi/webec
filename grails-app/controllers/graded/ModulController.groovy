@@ -59,10 +59,12 @@ class ModulController {
         redirect(view: 'index')
     }
 
-    def delete(Long id){
-        modulService.delete(id: id)
-        redirect(view: 'index')
 
+    def delete() {
+        long id = Long.valueOf(params.id)
+        Semester semester = modulService.get(id)
+        modulService.delete(semester.id)
+        redirect(view: 'index')
     }
 
 }
