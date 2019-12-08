@@ -30,44 +30,67 @@
         <div class="card card-body">
             <g:hiddenField name="version" value="${this.modul?.version}"/>
             <div class="form-group">
-                <label for="kuerzel">Kürzel:</label>
-                <g:textField id="kuerzel" name="kuerzel" value="${this.modul.kuerzel}" class="form-control"/>
+                <div class="form-row">
+                    <div class="col form-inline text-left col-sm-4">
+                        <label class="col-sm-3 col-form-label col-form-label text-left">Kürzel:</label>
+                        <g:textField id="kuerzel" name="kuerzel" value="${this.modul.kuerzel}" class="form-control"/>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="bezeichnung">Bezeichnung:</label>
-                <g:textField id="bezeichnung" name="bezeichnung" value="${this.modul.bezeichnung}"
-                             class="form-control"/>
+                <div class="form-row">
+                    <div class="col form-inline col-sm-4">
+                        <label class="col-sm-3 col-form-label col-form-label">Bezeichnung:</label>
+                        <g:textField id="bezeichnung" name="bezeichnung" value="${this.modul.bezeichnung}"
+                                     class="form-control"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col form-inline col-sm-4">
+                        <label class="col-sm-3 col-form-label col-form-label">Credits:</label>
+                        <g:textField id="credits" name="credits" value="${this.modul.credits}" class="form-control"
+                                     type="number"/>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="credits">Credits:</label>
-                <g:textField id="credits" name="credits" value="${this.modul.credits}" class="form-control"
-                             type="number"/>
+                <div class="form-row">
+                    <div class="col form-inline col-sm-4">
+                        <label class="col-sm-3 col-form-label col-form-label">Dozent:</label>
+                        <g:textField id="dozent" name="dozent" value="${this.modul.dozent}" class="form-control"/>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="dozent">Dozent:</label>
-                <g:textField id="dozent" name="dozent" value="${this.modul.dozent}" class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label for="semester">Semester:</label>
-                <!-- TODO vom Controller mitgeben-->
-                <g:select name="semester" class="custom-select"
-                          from="${graded.Semester.list()}"
-                          value="${this.modul?.semester?.semesterTyp}${this.modul?.semester?.jahr}"
-                          optionKey="id"/>
+                <div class="form-row">
+                    <div class="col form-inline col-sm-4">
+                        <label class="col-sm-3 col-form-label col-form-label">Semester:</label>
+                        <!-- TODO vom Controller mitgeben-->
+                        <g:select name="semester" class="custom-select"
+                                  from="${graded.Semester.list()}"
+                                  value="${this.modul?.semester?.semesterTyp}${this.modul?.semester?.jahr}"
+                                  optionKey="id"/>
+                    </div>
+                </div>
             </div>
             <g:if test="${modul.hasTestat}">
                 <div class="form-inline">
-                    <div class="form-check col-sm-1 left ">
-                        <label for="hasTestat" class="form-check-label">
-                            <g:checkBox id="hasTestat" name="hasTestat" value="${modul.hasTestat}"
-                                        class="form-check-input"
-                                        disabled="true"/>
-                            hat Testat
-                        </label>
+                    <div class="form-row">
+                        <div class="col form-inline col-sm-4">
+                            <label class="col-sm-3 col-form-label col-form-label">
+                                <g:checkBox id="hasTestat" name="hasTestat" value="${modul.hasTestat}"
+                                            class="form-check-input"
+                                            disabled="true"/>
+                                hat Testat
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-check ">
@@ -83,7 +106,8 @@
             <g:else>
                 <div class="form-check ">
                     <label for="hasMsp" class="form-check-label">
-                        <g:field type="checkbox" id="hasMsp" name="hasMsp" value="${modul.hasMsp}"
+                        <g:field type="checkbox" id="hasMsp" name="hasMsp"
+                                 value="${fieldValue(bean: modul, field: 'hasMsp')}"
                                  class="form-check-input" disabled="true"/>
                         hat Modulschlussprüfung
                     </label>
@@ -98,8 +122,8 @@
         <g:each in="${this.modul.noten}" var="note">
             <div class="form-row">
                 <div class="col form-inline col-sm-4">
-                    <label class="col-sm-2 col-form-label col-form-label">Note:</label>
-                    <input type="number" value="${fieldValue(bean: note, field: 'note')}"/>
+                    <label class="col-sm-3 col-form-label col-form-label">Note:</label>
+                    <input step="0.01" type="number" value="${fieldValue(bean: note, field: 'note')}"/>
                 </div>
 
             </div>
@@ -107,11 +131,11 @@
         <g:if test="${this.modul.hasMsp}">
             <hr/>
 
-            <div class="form-inline">
-                <label for="msp" class="col-1">MSP:</label>
-                <input type="number" id="msp" name="msp" value="${this.modul.msp}" class="form-control col-sm-1"
-                       step="0.1"/>
-            </div>
+            <div class="form-row">
+                <div class="col form-inline col-sm-4">
+                    <label class="col-sm-3 col-form-label col-form-label">MSP:</label>
+                    <input id="msp" step="0.01" type="number" value="${fieldValue(bean: modul.msp, field: 'note')}"/>
+                </div>
             </div>
         </g:if>
 

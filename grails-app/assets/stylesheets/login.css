@@ -69,11 +69,11 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+#loginPage input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
     background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+#loginPage input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -81,7 +81,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     transform: scale(0.95);
 }
 
-input[type=text], input[type=password] {
+#loginPage input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -102,12 +102,12 @@ input[type=text], input[type=password] {
     border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+#loginPage input[type=text]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+#loginPage input[type=text]:placeholder {
     color: #cccccc;
 }
 
@@ -116,7 +116,7 @@ input[type=text]:placeholder {
 /* ANIMATIONS */
 
 /* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
+#loginPage .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
@@ -125,7 +125,7 @@ input[type=text]:placeholder {
     animation-fill-mode: both;
 }
 
-@-webkit-keyframes fadeInDown {
+#loginPage @-webkit-keyframes fadeInDown {
     0% {
         opacity: 0;
         -webkit-transform: translate3d(0, -100%, 0);
@@ -138,7 +138,7 @@ input[type=text]:placeholder {
     }
 }
 
-@keyframes fadeInDown {
+#loginPage @keyframes fadeInDown {
     0% {
         opacity: 0;
         -webkit-transform: translate3d(0, -100%, 0);
@@ -152,11 +152,11 @@ input[type=text]:placeholder {
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+#loginPage @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+#loginPage @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+#loginPage @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-.fadeIn {
+#loginPage .fadeIn {
     opacity:0;
     -webkit-animation:fadeIn ease-in 1;
     -moz-animation:fadeIn ease-in 1;
@@ -171,32 +171,28 @@ input[type=text]:placeholder {
     animation-duration:1s;
 }
 
-.fadeIn.first {
+#loginPage .fadeIn.first {
     -webkit-animation-delay: 0.4s;
     -moz-animation-delay: 0.4s;
     animation-delay: 0.4s;
 }
 
-.fadeIn.second {
+#loginPage .fadeIn.second {
     -webkit-animation-delay: 0.6s;
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
 }
 
-.fadeIn.third {
+#loginPage .fadeIn.third {
     -webkit-animation-delay: 0.8s;
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
 }
 
-.fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-}
+
 
 /* Simple CSS3 Fade-in Animation */
-.underlineHover:after {
+#loginPage .underlineHover:after {
     display: block;
     left: 0;
     bottom: -10px;
@@ -207,11 +203,11 @@ input[type=text]:placeholder {
     transition: width 0.2s;
 }
 
-.underlineHover:hover {
+#loginPage .underlineHover:hover {
     color: #0d0d0d;
 }
 
-.underlineHover:hover:after{
+#loginPage .underlineHover:hover:after{
     width: 100%;
 }
 
@@ -219,10 +215,10 @@ input[type=text]:placeholder {
 
 /* OTHERS */
 
-*:focus {
+#loginPage *:focus {
     outline: none;
 }
 
-#icon {
+#loginPage #icon {
     width:60%;
 }

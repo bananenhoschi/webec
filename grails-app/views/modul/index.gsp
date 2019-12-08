@@ -26,7 +26,7 @@
             <tbody>
 
             <% module.each { modul -> %>
-            <tr>
+            <tr <g:if test="${modul.semester.id%2==0}">style="background-color: #f8f8f8"</g:if>>
                 <td>${modul.semester.semesterTyp.toString()} ${modul.semester.jahr}</td>
                 <td><g:link action="edit" id="${modul.id}">${modul.kuerzel}</g:link></td>
                 <td>${modul.bezeichnung}</td>
