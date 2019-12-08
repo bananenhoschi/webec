@@ -14,16 +14,16 @@ Die App hat folgende Features:
 - Ich kann ein Semester ohne Module löschen.
 - Ich kann ein Semester mit Modulen nicht löschen.
 #### Module
-- Ich kann ein Modul mit Bezeichnung, Kürzel, Dozent erfassen.
+- ✔ Ich kann ein Modul mit Bezeichnung, Kürzel, Dozent erfassen.
 - ✔️ Ich kann die Bezeichnung, das Kürzel oder den Dozenten bearbeiten.
 - ✔️ Ich kann ein Modul einem Semester zuweisen.
 - ✔️ Ich kann ein Modul einem zweiten Semester zuweisen, wenn das Modul nicht bestanden ist.
-- Ich kann bestimmen ob wie die Modulnote entsteht.
+- ✔ Ich kann bestimmen ob wie die Modulnote entsteht.
   - ✔️ Nur Erfahrungsnote
   - ✔️ Erfahrungsnote und MSP
   - ✔️ Nur MSP
-  - Testatarbeit
-- Ich kann definieren aus wievielen Noten und zu wieviel Prozent die Modulnote besteht.
+  - ✔ Testatarbeit
+- ✔ Ich kann definieren aus wievielen Noten ~~und zu wieviel Prozent die Modulnote besteht~.
 - ✔️ Ein Modul wird als bestanden oder nicht bestanden gekennzeichnet.
 - ✔️ Einem Modul kann ich hinterlegen wieviele Credits erhalten werden.
 #### Übersicht
@@ -32,7 +32,7 @@ Die App hat folgende Features:
 - ✔️ Ich sehe meinen Gesamtschnitt über alle Module (gewichtet und ungewichtet).
 #### Benutzer und Rollen
 - Es gibt die Rolle des Admin. Dieser kann alles Modifizieren.
-- Es gibt die Rolle Student. Dieser kann seine Module modifizieren.
+- ✔ Es gibt die Rolle Student. Dieser kann seine Module modifizieren.
 - Es gibt die Rolle Gast. Dieser kann nur den Fortschritt und den Schnitt sehen.
 - ✔️ Ein nicht angemeldeter Benutzer hat keine Einsicht in die Noten.
 
