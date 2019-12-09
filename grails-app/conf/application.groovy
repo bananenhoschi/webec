@@ -4,6 +4,8 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'graded.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'graded.UserRole'
 grails.plugin.springsecurity.authority.className = 'graded.Role'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
