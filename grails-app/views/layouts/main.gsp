@@ -7,8 +7,6 @@
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="open-iconic/font/css/open-iconic-bootstrap.css"/>
     <asset:javascript src="application.js"/>
-</head>
-
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">

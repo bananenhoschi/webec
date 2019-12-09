@@ -97,7 +97,7 @@
                             <span class="oi oi-ban failed" title="nicht bestanden"></span>
                         </g:else>
                     </td>
-                    <td class="float-right">
+                    <td>
                         <g:link action="edit" id="${modul.id}"><span
                                 class="oi oi-pencil col-sm-1 text-primary"></span></g:link>
                         <g:link action="delete" id="${modul.id}" method="delete"><span

@@ -2,7 +2,7 @@ body {
     background-color: #f8f9fa !important;
 }
 
-.form-inline label{
+.form-inline label {
     text-align: left !important;
     justify-content: left !important;
 }
@@ -95,4 +95,120 @@ h3 {
 .modal-confirm .icon-box i {
     font-size: 58px;
     margin: -2px 0 0 -2px;
+}
+
+
+.popup_title {
+}
+
+.popup_wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.popup_content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0, 10px);
+    background-color: #bfbfbf;
+    padding: 5pt;
+    margin-left: 40pt;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+
+.graded-progress-wrapper {
+    clear: both;
+}
+
+.graded-progress-text {
+    width: 30%;
+    float: left;
+}
+
+.graded-progress-bar {
+    width: 70%;
+    float: right;
+}
+
+.graded-progress-bar-max {
+    width: 80px;
+    height: 180px;
+    border-top:1px solid var(--gray);
+    border-bottom:1px solid darkgrey;
+    background-color: var(--gray);
+}
+
+.graded-progress-bar-passed {
+    width: 76px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: var(--success);
+    position: absolute;
+}
+
+
+.graded-progress-bar-failed {
+    width: 76px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: var(--danger);
+    position: absolute;
+    bottom: 22px;
+}
+
+.graded-progress-bar-open {
+    width: 76px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: var(--yellow);
+    position: absolute;
+}
+
+.text-passed {
+    text-decoration: underline;
+    text-decoration-color: var(--success);
+}
+
+.text-open {
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+}
+.text-failed {
+    text-decoration: underline;
+    text-decoration-color: var(--danger);
+}
+
+.popup_wrapper a {
+    text-decoration: none;
+    color: black;
+}
+
+.popup_content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 20px);
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+
+    border-right: 10px solid #bfbfbf;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.popup_wrapper:hover .popup_content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.popup_message {
+    text-align: center;
 }

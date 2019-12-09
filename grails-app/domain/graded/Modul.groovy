@@ -28,9 +28,7 @@ class Modul {
 
 
     boolean isCompleted() {
-        return angerechnet || (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && noten != null && !noten.any {
-            it.getNote() != null && it.getNote() > 0
-        } && noten.size() == anzahlNoten)
+        return angerechnet || (testatPassed && hasTestat) || (hasMsp && msp != null && msp.getNote() != null) || (!hasMsp && noten != null  && noten.findAll {it.note == 0}.size() == 0 && noten.size() == anzahlNoten)
     }
 
     double getErfahrungsnote() {

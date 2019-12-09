@@ -18,17 +18,26 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Kürzel</th>
+                            <th class="col-sm-1">Kürzel</th>
                             <th>EN</th>
                             <th>MSP</th>
                             <th>Modulnote</th>
                             <th></th>
                         </tr>
                         </thead>
-                        <% module.each { modul -> %>
                         <tbody class="table table-striped ">
+                        <% aktuell.each { modul -> %>
                         <tr>
-                            <td>${modul.kuerzel}</td>
+                            <td>
+                                <div class="popup_wrapper">
+                                    <a href="#" class="popup_title">${modul.kuerzel}</a>
+                                    <g:if test="${(modul.bezeichnung != null)}">
+                                        <div class="popup_content"><a
+                                                href="https://www.google.com/search?client=firefox-b-d&q=fhnw+${modul.kuerzel}">${modul.bezeichnung}</a>
+                                        </div>
+                                    </g:if>
+                                </div>
+                            </td>
                             <td>
                                 <g:if test="${modul.getErfahrungsnote() > 0}">
                                     ${modul.getErfahrungsnote()}
@@ -82,53 +91,30 @@
         <div class="col-sm">
             <div class="card">
                 <div class="card-header">
-                    <h3><span class="oi oi-bar-chart"></span> Dein Fortschritt</h3>
+                    <h3><span class="oi oi-bar-chart"></span> Dein ECTS Fortschritt</h3>
                 </div>
 
                 <div class="card-body">
+                    <div class="graded-progress-wrapper">
+                        <div class="graded-progress-text">
 
-                    <div width="320" height="320" style="margin: 20px">
+                            <p class="text-open">${ectsAktuell} Aktuell offen</p>
+                            <p class="text-passed">${ectsBestanden} Bestanden</p>
+                            <p class="text-failed">${ectsNichtBestanden} Nicht Bestanden</p>
 
-                        <canvas id="max" style="position: absolute"></canvas>
+                        </div>
 
-                        <canvas id="bestanden" style="position: absolute"></canvas>
-                        <canvas id="nichtBestanden" style="position: absolute"></canvas>
-                        <canvas id="aktuell" style="position: absolute"></canvas>
-
-                        <h1>${ectsBestanden}</h1>
-                        <script>
-
-                            var c = document.getElementById("max");
-                            var ctx = c.getContext("2d");
-                            ctx.beginPath();
-                            ctx.fillStyle = "#787878";
-                            ctx.fillRect(0, 0, 180, 40);
-                            ctx.stroke();
-
-                            var c = document.getElementById("bestanden");
-                            var ctx = c.getContext("2d");
-                            ctx.beginPath();
-                            ctx.fillStyle = "#3e9712";
-                            ctx.fillRect(0, 0, ${ectsBestanden}, 40);
-                            ctx.stroke();
-
-                            var c = document.getElementById("aktuell");
-                            var ctx = c.getContext("2d");
-                            ctx.beginPath();
-                            ctx.fillStyle = "#ffe722";
-                            ctx.fillRect(${ectsBestanden}, 0, ${ectsAktuell}, 40);
-                            ctx.stroke();
-
-                            var c = document.getElementById("nichtBestanden");
-                            var ctx = c.getContext("2d");
-                            ctx.beginPath();
-                            ctx.fillStyle = "#f63a18";
-                            ctx.fillRect(0, 0, ${ectsNichtBestanden}, 40);
-                            ctx.stroke();
-                        </script>
+                        <div class="graded-progress-bar">
+                            <div class="graded-progress-bar-max">
+                                <div class="graded-progress-bar-failed" style="height: ${ectsNichtBestanden}px"></div>
+                                <div class="graded-progress-bar-passed" style="height: ${ectsBestanden}px; bottom:${ectsNichtBestanden+22}px;"></div>
+                                <div class="graded-progress-bar-open" style="height: ${ectsAktuell}px;bottom: ${ectsBestanden+22}px"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <br/>
 
             <div class="card">

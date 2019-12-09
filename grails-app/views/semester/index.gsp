@@ -29,8 +29,8 @@
                 <% semesters.each { semester -> %>
                 <tr>
                     <td class="col-md-2">${semester.semesterTyp.getName()}</td>
-                    <td>${semester.jahr}</td>
-                    <td class="float-right">
+                    <td class="col-md-2">${semester.jahr}</td>
+                    <td class="col-md-8">
                         <g:link action="edit" id="${semester.id}"><span
                                 class="oi oi-pencil col-sm-1 text-primary"></span></g:link>
                         <g:link action="delete" id="${semester.id}" method="delete"><span
