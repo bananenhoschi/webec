@@ -24,13 +24,12 @@
                 </ul>
             </g:hasErrors>
         </div>
-
-        <div class="card-body">
-            <g:form resource="${this.semester}" method="POST">
+        <g:form resource="${this.semester}" method="POST">
+            <div class="card-body">
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col form-inline text-left col-sm-4">
-                            <label class="col-sm-3 col-form-label col-form-label text-left">Semester:</label>
+                        <div class="col form-inline text-left col-sm-5">
+                            <label class="col-sm-4 col-form-label col-form-label text-left">Semester:</label>
                             <g:select id="semesterTyp" name="semesterTyp" from="${graded.SemesterTyp.values()}"
                                       value="${fieldValue(bean: semesterTyp, field: 'semesterTyp')}"
                                       class="form-control"/>
@@ -40,23 +39,25 @@
 
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col form-inline text-left col-sm-4">
-                            <label class="col-sm-3 col-form-label col-form-label text-left">Jahr:</label>
+                        <div class="col form-inline text-left col-sm-5">
+                            <label class="col-sm-4 col-form-label col-form-label text-left">Jahr:</label>
                             <g:textField id="jahr" name="jahr" value="${this.semester.jahr}"
                                          class="form-control"/>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                     <fieldset class="buttons">
-                <g:submitButton name="create" class="btn btn-primary" value="Speichern"/>
-                <g:link controller="semester" action="index" class="btn btn-outline-secondary ">
-                    Abbrechen
-                </g:link>
+            </div>
+
+            <div class="card-footer">
+                <fieldset class="buttons">
+                    <g:submitButton name="create" class="btn btn-primary" value="Speichern"/>
+                    <g:link controller="semester" action="index" class="btn btn-outline-secondary ">
+                        Abbrechen
+                    </g:link>
                 </fieldset>
-            </g:form>
-        </div>
-        </div>
+            </div>
+        </g:form>
     </div>
+</div>
 </body>
 </html>

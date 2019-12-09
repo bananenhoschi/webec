@@ -7,6 +7,8 @@
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="open-iconic/font/css/open-iconic-bootstrap.css"/>
     <asset:javascript src="application.js"/>
+    <title>Grader</title>
+</head>
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -17,20 +19,26 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="${createLink(controller: 'dashboard', action: 'index')}"><span
-                            class="oi oi-pie-chart"></span> Dashboard</a>
+                            class="oi oi-pie-chart">&nbsp;</span>Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${createLink(controller: 'modul', action: 'index')}"><span
-                            class="oi oi-calculator"></span> Modulnoten</a>
+                            class="oi oi-calculator">&nbsp;</span>Modulnoten</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${createLink(controller: 'semester', action: 'index')}"><span
-                            class="oi oi-calendar"></span> Semester</a>
+                            class="oi oi-calendar">&nbsp;</span>Semester</a>
                 </li>
                 <li class="nav-item navbar-expand-sm">
                     <a class="nav-link" href="${createLink(controller: 'admin', action: 'index')}"><span
-                            class="oi oi-wrench"></span> Verwaltung</a>
+                            class="oi oi-wrench">&nbsp;</span>Verwaltung</a>
                 </li>
+                <sec:ifLoggedIn>
+                    <li class="nav-item navbar-expand-sm">
+                        <g:link class="nav-link" controller='logout'><span
+                                class="oi oi-lock-locked">&nbsp;</span>Logout</g:link>
+                    </li>
+                </sec:ifLoggedIn>
             </ul>
         </div>
     </nav>
