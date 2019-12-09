@@ -2,6 +2,7 @@ package graded
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
+import org.hibernate.exception.ConstraintViolationException
 
 @Secured([Role.STUDENT, Role.ADMIN])
 class SemesterController {
@@ -47,7 +48,9 @@ class SemesterController {
     def delete() {
         long id = Long.valueOf(params.id)
         Semester semester = semesterService.get(id)
-        semesterService.delete(semester.id)
+        if(!semester.getModules().isEmpty()) {
+            throw new ValidationException("Das Semester kann nicht gelöscht werden. Es sind noch Module dazugehörig.", semester.errors)
+        }
         redirect(view: 'index')
     }
 
