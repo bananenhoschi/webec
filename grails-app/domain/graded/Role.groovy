@@ -15,7 +15,7 @@ class Role implements Serializable {
 
 	static final String ADMIN = "ROLE_ADMIN"
 	static final String STUDENT = "ROLE_STUDENT"
-	static final String GAST = "ROLE_GAST"
+	static final String GAST = "ROLE_GUEST"
 
 	static constraints = {
 		authority nullable: false, blank: false, unique: true
