@@ -38,7 +38,7 @@ class ModulTest extends GroovyTestCase {
 
         Note en = new Note()
         en.setNote(4.0)
-        m.setNoten(Set.of(en))
+        m.noten = Set.of(en)
 
         Note msp = new Note()
         msp.setNote(4.0)
@@ -57,7 +57,7 @@ class ModulTest extends GroovyTestCase {
 
         Note en = new Note()
         en.setNote(3.0)
-        m.setNoten(Set.of(en))
+        m.noten = Set.of(en)
 
         Note msp = new Note()
         msp.setNote(3.0)
@@ -77,7 +77,7 @@ class ModulTest extends GroovyTestCase {
 
         Note en = new Note()
         en.setNote(4.0)
-        m.setNoten(Set.of(en))
+        m.noten = Set.of(en)
 
         assertTrue(m.isPassed())
         assertTrue(m.isCompleted())
@@ -91,7 +91,7 @@ class ModulTest extends GroovyTestCase {
 
         Note en = new Note()
         en.setNote(4.0)
-        m.setNoten(Set.of(en))
+        m.noten = Set.of(en)
 
         Note msp = new Note()
         msp.setNote(4.0)
