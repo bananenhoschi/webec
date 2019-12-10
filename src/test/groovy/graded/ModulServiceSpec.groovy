@@ -9,66 +9,65 @@ import spock.lang.Specification
 @Rollback
 class ModulServiceSpec extends Specification {
 
-    SemesterService semesterService
+    ModulService modulService
     SessionFactory sessionFactory
 
     private Long setupData() {
-        // TODO: Populate valid domain instances and return a valid ID
-        //new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        //Semester semester = new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //semester.id
+        Semester semester = new Semester(semesterTyp: SemesterTyp.HS, jahr: 19).save(flush: true, failOnError: true)
+        new Modul(kuerzel: 'test1', credits: 3, semester: semester).save(flush: true, failOnError: true)
+        new Modul(kuerzel: 'test2', credits: 3, semester: semester).save(flush: true, failOnError: true)
+        new Modul(kuerzel: 'test3', credits: 3, semester: semester).save(flush: true, failOnError: true)
+        new Modul(kuerzel: 'test4', credits: 3, semester: semester).save(flush: true, failOnError: true)
+        Modul modul = new Modul(kuerzel: 'test', credits: 3, semester: semester).save(flush: true, failOnError: true)
+        assert modul != null
+        modul.id
     }
 
     void "test get"() {
         setupData()
 
         expect:
-        semesterService.get(1) != null
+        modulService.get(1) != null
     }
 
     void "test list"() {
         setupData()
 
         when:
-        List<Semester> semesterList = semesterService.list(max: 2, offset: 2)
+        List<Modul> modulList = modulService.list(max: 2, offset: 2)
 
         then:
-        semesterList.size() == 2
-        assert false, "TODO: Verify the correct instances are returned"
+        modulList.size() == 2
     }
 
     void "test count"() {
         setupData()
 
         expect:
-        semesterService.count() == 5
+        modulService.count() == 5
     }
 
     void "test delete"() {
         Long semesterId = setupData()
 
         expect:
-        semesterService.count() == 5
+        modulService.count() == 5
 
         when:
-        semesterService.delete(semesterId)
+        modulService.delete(semesterId)
         sessionFactory.currentSession.flush()
 
         then:
-        semesterService.count() == 4
+        modulService.count() == 4
     }
 
     void "test save"() {
         when:
-        assert false, "TODO: Provide a valid instance to save"
-        Semester semester = new Semester()
-        semesterService.save(semester)
+        Semester semester = new Semester(semesterTyp: SemesterTyp.HS, jahr: 20).save(flush: true, failOnError: true)
+        Modul modul = new Modul(kuerzel: 'tset', credits: 3, semester: semester)
+        modulService.save(modul)
 
         then:
-        semester.id != null
+        modul.id != null
     }
 }

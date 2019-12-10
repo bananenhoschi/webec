@@ -1,18 +1,26 @@
 package graded
 
+import grails.gorm.transactions.Rollback
+import grails.testing.mixin.integration.Integration
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class SecurityServiceSpec extends Specification implements ServiceUnitTest<SecurityService>{
+@Integration
+@Rollback
+class SecurityServiceSpec extends Specification implements ServiceUnitTest<SecurityService> {
 
-    def setup() {
+    SecurityService securityService
+
+
+    void "test create"() {
+
+        Role role = new Role(authority: 'ROLE').save(failOnError: true)
+        User user = new User(username: 'test', password: 'test').save(failOnError: true)
+
+        def userRole = securityService.create(user, role)
+
+        expect:
+        userRole != null
     }
 
-    def cleanup() {
-    }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }

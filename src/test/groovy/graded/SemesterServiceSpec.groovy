@@ -1,9 +1,9 @@
 package graded
 
-import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.Rollback
-import spock.lang.Specification
+import grails.testing.mixin.integration.Integration
 import org.hibernate.SessionFactory
+import spock.lang.Specification
 
 @Integration
 @Rollback
@@ -11,64 +11,63 @@ class SemesterServiceSpec extends Specification {
 
     SemesterService semesterService
     SessionFactory sessionFactory
+    Semester hs19
+    Semester fs19
 
     private Long setupData() {
-        // TODO: Populate valid domain instances and return a valid ID
-        //new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        //Semester semester = new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        //new Semester(...).save(flush: true, failOnError: true)
-        assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //semester.id
+        hs19 = new Semester(semesterTyp: SemesterTyp.HS, jahr: 19).save(flush: true, failOnError: true)
+        fs19 = new Semester(semesterTyp: SemesterTyp.FS, jahr: 19).save(flush: true, failOnError: true)
+        assert hs19.id != null
+        assert fs19.id != null
     }
 
     void "test get"() {
         setupData()
 
         expect:
-        semesterService.get(1) != null
+        semesterService.get(hs19.id) != null
     }
 
     void "test list"() {
         setupData()
 
         when:
-        List<Semester> semesterList = semesterService.list(max: 2, offset: 2)
+        List<Semester> semesterList = semesterService.list()
 
         then:
         semesterList.size() == 2
-        assert false, "TODO: Verify the correct instances are returned"
+        assert semesterList.get(0) == hs19
+        assert semesterList.get(1) == fs19
     }
 
     void "test count"() {
         setupData()
 
         expect:
-        semesterService.count() == 5
+        semesterService.count() == 2
     }
 
     void "test delete"() {
-        Long semesterId = setupData()
+        setupData()
 
         expect:
-        semesterService.count() == 5
+        semesterService.count() == 2
 
         when:
-        semesterService.delete(semesterId)
+        semesterService.delete(hs19.id)
         sessionFactory.currentSession.flush()
 
         then:
-        semesterService.count() == 4
+        semesterService.count() == 1
     }
 
     void "test save"() {
         when:
-        assert false, "TODO: Provide a valid instance to save"
-        Semester semester = new Semester()
+        Semester semester = new Semester(semesterTyp: SemesterTyp.FS, jahr: 20)
         semesterService.save(semester)
 
         then:
         semester.id != null
+
     }
 }
