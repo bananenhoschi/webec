@@ -1,4 +1,5 @@
 # WebEngineering Module, Graded Exercise
+Build State: ![](https://github.com/WebEngineering-FHNW/hs19-cr-webec-ge-bananenhoschi/workflows/Grails%20CI/badge.svg)
 
 ## Commit Proposal
 
