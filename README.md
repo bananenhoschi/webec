@@ -32,10 +32,10 @@ Die App hat folgende Features:
 - ✔ Ich sehe wieviel Module ich schon besucht und bestanden habe und wieviele ich noch benötige.
 - ✔ Ich sehe meinen Gesamtschnitt über alle Module (gewichtet und ungewichtet).
 #### Benutzer und Rollen
-- ✔ Es gibt die Rolle des Admin. ~~Dieser kann alles Modifizieren~.
+- ✔ Es gibt die Rolle des Admin. ~~Dieser kann alles Modifizieren~~.
 - ✔ Es gibt die Rolle Student. Dieser kann seine Module modifizieren.
-- ✔ Es gibt die Rolle Gast. ~~Dieser kann nur den Fortschritt und den Schnitt sehen.~
-- ✔ Ein nicht angemeldeter Benutzer hat keine Einsicht in die Noten.~
+- ✔ Es gibt die Rolle Gast. ~~Dieser kann nur den Fortschritt und den Schnitt sehen.~~
+- ✔ Ein nicht angemeldeter Benutzer hat keine Einsicht in die Noten.~~
 
 #### Note:
 
