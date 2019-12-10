@@ -131,7 +131,7 @@
                         <div class="form-row">
                             <div class="col form-inline col-sm-5">
                                 <label class="col-sm-4 col-form-label col-form-label">Note:</label>
-                                <input step="0.01" type="number" value="${fieldValue(bean: note, field: 'note')}" min="1.0" max="6.0"/>
+                                <input step="0.01" type="number" value="${fieldValue(bean: note, field: 'note')}" min="0" max="6.0"/>
                             </div>
 
                         </div>
@@ -142,7 +142,7 @@
                         <div class="form-row">
                             <div class="col form-inline col-sm-5">
                                 <label class="col-sm-4 col-form-label col-form-label">MSP:</label>
-                                <input id="msp" step="0.01" type="number" min="1.0" max="6.0"
+                                <input id="msp" step="0.01" type="number" min="0" max="6.0"
                                        value="${fieldValue(bean: modul.msp, field: 'note')}"/>
                             </div>
                         </div>
@@ -155,10 +155,6 @@
                     <input class="btn btn-primary" type="submit" value="Speichern"/>
                     <g:link controller="modul" action="index" class="btn btn-outline-secondary ">
                         Abbrechen
-                    </g:link>
-                    <g:link controller="modul" action="delete" params="${this.modul.id}"
-                            class="btn btn-outline-danger float-right ">
-                        Löschen
                     </g:link>
                 </fieldset>
             </div>
