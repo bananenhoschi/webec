@@ -1,1 +1,103 @@
-my project description as static html ...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projektbeschreibung</title>
+    <link rel="stylesheet" href="grails-app/assets/stylesheets/bootstrap.min.css">
+    <style>
+        div > img {
+            margin: 5px;
+            padding: 2px;
+            border: 1px solid darkgrey;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>webeC Projekt - <img src="grails-app/assets/images/logo.png"></h1>
+    <h2>Projektbeschreibung</h2>
+    <p>Die Aufgabe war es in Einzelarbeit eine Grails Applikation mit den im Unterricht erlernten Mitteln zu erstellen
+        und
+        diese auf Github zu stellen. Der Aufwand sollte ungefähr 24 Stunden umfassen.</p>
+    <p>Der Student reicht eine Idee ein. Diese wird vom Dozenten via Github geprüft und genehmigt.</p>
+
+    <h3>Timeline</h3>
+    <table class="table">
+        <tr>
+            <td>18.11.2019</td>
+            <td>Commit proposal (template)</td>
+        </tr>
+        <tr>
+            <td>22.11.2019</td>
+            <td>Lecturer accepting proposal (git commit)</td>
+        </tr>
+        <tr>
+            <td>6.12.2019</td>
+            <td>Delivery Deadline</td>
+        </tr>
+        <tr>
+            <td>13.01.2019</td>
+            <td>Grading via git commit</td>
+        </tr>
+    </table>
+    <h3>Projektidee</h3>
+
+    <p>Umgesetzt wird eine Applikation die es einem Studenten ermöglicht seinen Studiumsfortschritt zu erfassen. Dazu
+        kann
+        er Semester erfassen und für jedes Semester die Module erfassen, welche er besucht. Ein Modul kann erfasst
+        werden
+        und für ein Modul kann definiert werden wie die Modulnote gebildet wird (Testatarbeit, Nur MSP, Anzahl Noten für
+        EN,
+        etc).</p>
+    <p>Dem Studenten wird in einem Dashboard sein aktuelles Semester, den Fortschritt und den gewichteten und
+        ungewichteten
+        Notendurchschnitt dargestellt.</p>
+    <div class="text-center">
+        <img src="images/grader.png" width="40%">
+        <img src="images/login.png" width="40%">
+        <img src="images/dashboard.png" width="40%">
+        <img src="images/module.png" width="40%">
+        <img src="images/semester.png" width="40%">
+    </div>
+    <h2>Datenmodell</h2>
+    <div class="text-center"><img src="images/modell.png"></div>
+    <p>Das Datenmodell beschreibt die Relationen zwischen Modul, Semester und Note. Dabei ist darauf zu achten, dass ein
+        Modul
+        eine 0..1 Relation zu Note hat. Dies ist, falls das Modul eine MSP hat. Zudem gibt es eine 1..n Relation
+        zwischen
+        Modul
+        und Note. Dies sind die Noten während des Semesters.</p>
+
+    <h2>Beispieldaten</h2>
+    Um die Applikation mit Daten zu testen liegt ein sql-Skript mit Bespieldaten vor. Dieses ist in <a
+        href="scripts/data.sql">scripts/data.sql</a> zu finden. Die Daten können nach dem Start der Applikation über die
+    <a href="http://localhost:8080/h2-console">H2-Console</a> importiert werden.
+
+    <p>Per Default werden drei Benutzer angelegt:</p>
+    <ul>
+        <li>Admin: admin/admin</li>
+        <li>User: user/user</li>
+        <li>Guest: guest/guest</li>
+    </ul>
+    <p>
+        Die Benutzer haben unterschiedliche Berechtigungen (ROLE_ADMIN, ROLE_STUDENT, ROLE_GUEST). Jede Rolle kann
+        andere
+        Inhalte sehen bzw. nicht anzeigen lassen.
+    </p>
+
+    <h2>Tests</h2>
+    <p>Es wurden für alle Controller Tests geschrieben. Für die Services wurden ebenfalls Tests geschrieben. Zudem
+        wurden für die Klasse Modul Unit Tests geschrieben.</p>
+    <p>Die Testabdeckung liegt jedoch nicht bei 100%.</p>
+    <p>Auf Github wurde zudem ein Workflow eingerichtet, welcher die Tests bei jedem Push ausführt.</p>
+    <p><a href="https://github.com/WebEngineering-FHNW/hs19-cr-webec-ge-bananenhoschi/actions"><img
+            src="https://github.com/WebEngineering-FHNW/hs19-cr-webec-ge-bananenhoschi/workflows/Grails%20CI/badge.svg"></a>
+    </p>
+    <div class="text-center">
+        <img src="images/tests.png" width="50%">
+    </div>
+
+</div>
+
+</body>
+</html>
