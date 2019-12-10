@@ -60,7 +60,7 @@
                                 <label class="col-sm-4 col-form-label col-form-label">Credits:</label>
                                 <g:textField id="credits" name="credits" value="${this.modul.credits}"
                                              class="form-control"
-                                             type="number"/>
+                                             type="number" min="1" max="12"/>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         <div class="form-row">
                             <div class="col form-inline col-sm-5">
                                 <label class="col-sm-4 col-form-label col-form-label">Note:</label>
-                                <input step="0.01" type="number" value="${fieldValue(bean: note, field: 'note')}"/>
+                                <input step="0.01" type="number" value="${fieldValue(bean: note, field: 'note')}" min="1.0" max="6.0"/>
                             </div>
 
                         </div>
@@ -142,7 +142,7 @@
                         <div class="form-row">
                             <div class="col form-inline col-sm-5">
                                 <label class="col-sm-4 col-form-label col-form-label">MSP:</label>
-                                <input id="msp" step="0.01" type="number"
+                                <input id="msp" step="0.01" type="number" min="1.0" max="6.0"
                                        value="${fieldValue(bean: modul.msp, field: 'note')}"/>
                             </div>
                         </div>
