@@ -34,15 +34,14 @@ class ModulTest extends GroovyTestCase {
 
         Modul m = new Modul()
         m.setHasMsp(true)
+        m.setAnzahlNoten(1)
 
         Note en = new Note()
         en.setNote(4.0)
-        en.setGewichtung(1.0)
         m.setNoten(Set.of(en))
 
         Note msp = new Note()
         msp.setNote(4.0)
-        msp.setGewichtung(1.0)
         m.setMsp(msp)
 
         assertTrue(m.isPassed())
@@ -53,16 +52,15 @@ class ModulTest extends GroovyTestCase {
     void testIsPassed_MspLt375(){
 
         Modul m = new Modul()
+        m.setAnzahlNoten(1)
         m.setHasMsp(true)
 
         Note en = new Note()
         en.setNote(3.0)
-        en.setGewichtung(1.0)
         m.setNoten(Set.of(en))
 
         Note msp = new Note()
         msp.setNote(3.0)
-        msp.setGewichtung(1.0)
         m.setMsp(msp)
 
         assertFalse(m.isPassed())
@@ -75,10 +73,10 @@ class ModulTest extends GroovyTestCase {
 
         Modul m = new Modul()
         m.setHasMsp(false)
+        m.setAnzahlNoten(1)
 
         Note en = new Note()
         en.setNote(4.0)
-        en.setGewichtung(1.0)
         m.setNoten(Set.of(en))
 
         assertTrue(m.isPassed())
@@ -89,15 +87,14 @@ class ModulTest extends GroovyTestCase {
     void testIsCompleted() {
         Modul m = new Modul()
         m.setHasMsp(true)
+        m.setAnzahlNoten(1)
 
         Note en = new Note()
         en.setNote(4.0)
-        en.setGewichtung(1.0)
         m.setNoten(Set.of(en))
 
         Note msp = new Note()
         msp.setNote(4.0)
-        msp.setGewichtung(1.0)
         m.setMsp(msp)
 
         assertTrue(m.isPassed())
@@ -107,15 +104,14 @@ class ModulTest extends GroovyTestCase {
     void testCompletedButNotPassed() {
         Modul m = new Modul()
         m.setHasMsp(true)
+        m.setAnzahlNoten(1)
 
         Note en = new Note()
         en.setNote(3.0)
-        en.setGewichtung(1.0)
         m.setNoten(Set.of(en))
 
         Note msp = new Note()
         msp.setNote(3.0)
-        msp.setGewichtung(1.0)
         m.setMsp(msp)
 
         assertFalse(m.isPassed())
@@ -125,7 +121,7 @@ class ModulTest extends GroovyTestCase {
     void testNotCompletedNoMsp() {
         Modul m = new Modul()
         m.setHasMsp(false)
-
+        m.setAnzahlNoten(0)
 
         assertFalse(m.isPassed())
         assertFalse(m.isCompleted())
