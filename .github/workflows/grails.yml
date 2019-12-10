@@ -1,4 +1,4 @@
-name: Android CI
+name: Grails CI
 
 on: [push]
 
