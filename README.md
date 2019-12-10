@@ -1,4 +1,5 @@
 # WebEngineering Module, Graded Exercise
+Build State: ![](https://github.com/WebEngineering-FHNW/hs19-cr-webec-ge-bananenhoschi/workflows/Grails%20CI/badge.svg)
 
 ## Commit Proposal
 
@@ -36,11 +37,6 @@ Die App hat folgende Features:
 - ✔ Es gibt die Rolle Gast. ~~Dieser kann nur den Fortschritt und den Schnitt sehen.~
 - ✔ Ein nicht angemeldeter Benutzer hat keine Einsicht in die Noten.~
 
-#### TODO
-- Unit Testing
-- Spec Testing
-- Summary
-
 #### Note:
 
 ~~durchgestrichen~~ Requirement wurde weggelassen wegen knapper Resourcen
@@ -72,12 +68,12 @@ How to test the project:  (if other than `grailsw test-app`)
 Hand-written, static HTML 
 project description:      (if other than `index.html` in project root directory)
 
-###External contributions:
+### External contributions:
 - Popup: inspiriert durch https://codepen.io/mihaeltomic/pen/PqxVaq
 - Icons: OpenIconic (https://useiconic.com/open)
 - Login: inspiriert durch https://bootsnipp.com/snippets/dldxB
 
-###Other comments:
+### Other comments:
 
 - Als Style Hilfe wurde Bootstrap verwendet
 - Icons von OpenIconic
