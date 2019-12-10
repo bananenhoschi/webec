@@ -34,10 +34,10 @@ class ModulServiceSpec extends Specification {
         setupData()
 
         when:
-        List<Modul> modulList = modulService.list(max: 2, offset: 2)
+        List<Modul> modulList = modulService.list()
 
         then:
-        modulList.size() == 2
+        modulList.size() == 5
     }
 
     void "test count"() {

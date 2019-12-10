@@ -2,6 +2,7 @@ package graded
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
+import org.springframework.http.HttpStatus
 
 @Secured([Role.STUDENT, Role.ADMIN])
 class ModulController {
@@ -32,8 +33,10 @@ class ModulController {
     }
 
     def save(Modul modul) {
-        if (modul == null) return // TODO throw Error
-
+        if (modul == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
         try {
             for (int i = 0; i < modul.anzahlNoten; i++) {
                 modul.addToNoten(Note.create())
@@ -48,12 +51,18 @@ class ModulController {
     }
 
     def edit(Long id) {
+        if (id == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
         render view: 'edit', model: [modul: modulService.get(id)]
     }
 
     def update(Modul modul) {
-        if (modul == null) return // TODO throw Error
-
+        if (modul == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
         modulService.save(modul)
 
         redirect(view: 'index')
@@ -61,9 +70,13 @@ class ModulController {
 
 
     def delete() {
+        if (params.id == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
         long id = Long.valueOf(params.id)
-        Semester semester = modulService.get(id)
-        modulService.delete(semester.id)
+        Modul modul = modulService.get(id)
+        modulService.delete(modul.id)
         redirect(view: 'index')
     }
 

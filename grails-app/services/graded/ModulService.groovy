@@ -7,7 +7,7 @@ interface ModulService {
 
     Modul get(Serializable id)
 
-    List<Modul> list(Map args)
+    List<Modul> list()
 
     Long count()
 

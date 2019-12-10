@@ -2,7 +2,7 @@ package graded
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
-import org.hibernate.exception.ConstraintViolationException
+import org.springframework.http.HttpStatus
 
 @Secured([Role.STUDENT, Role.ADMIN])
 class SemesterController {
@@ -16,6 +16,10 @@ class SemesterController {
     }
 
     def edit(Long id) {
+        if (id == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
         render view: 'edit', model: [semester: semesterService.get(id)]
     }
 
@@ -24,7 +28,10 @@ class SemesterController {
     }
 
     def save(Semester semester) {
-        if (semester == null) return // TODO throw Error
+        if (semester == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
 
         try {
 
@@ -38,7 +45,10 @@ class SemesterController {
     }
 
     def update(Semester semester) {
-        if (semester == null) return // TODO throw Error
+        if (semester == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
 
         semesterService.save(semester)
 
@@ -46,11 +56,17 @@ class SemesterController {
     }
 
     def delete() {
+        if (params.id == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
+
         long id = Long.valueOf(params.id)
         Semester semester = semesterService.get(id)
-        if(!semester.getModules().isEmpty()) {
+        if (semester.getModules() != null && !semester.getModules().isEmpty()) {
             throw new ValidationException("Das Semester kann nicht gelöscht werden. Es sind noch Module dazugehörig.", semester.errors)
         }
+        semesterService.delete(id)
         redirect(view: 'index')
     }
 

@@ -1,52 +1,44 @@
 package graded
 
-import grails.testing.gorm.DomainUnitTest
+import grails.gorm.transactions.Rollback
+import grails.testing.mixin.integration.Integration
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
-import spock.lang.*
+import spock.lang.Specification
 
-class SemesterControllerSpec extends Specification implements ControllerUnitTest<SemesterController>, DomainUnitTest<Semester> {
-
-    def populateValidParams(params) {
-        assert params != null
-
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
-        assert false, "TODO: Provide a populateValidParams() implementation for this generated test suite"
-    }
+@Integration
+@Rollback
+class SemesterControllerSpec extends Specification implements ControllerUnitTest<SemesterController> {
 
     void "Test the index action returns the correct model"() {
         given:
         controller.semesterService = Mock(SemesterService) {
             1 * list(_) >> []
-            1 * count() >> 0
         }
 
-        when:"The index action is executed"
+        when: "The index action is executed"
         controller.index()
 
-        then:"The model is correct"
-        !model.semesterList
-        model.semesterCount == 0
+        then: "The model is correct"
+        !model.semesters
     }
 
     void "Test the create action returns the correct model"() {
-        when:"The create action is executed"
+        when: "The create action is executed"
         controller.create()
 
-        then:"The model is correctly created"
-        model.semester!= null
+        then: "The model is correctly created"
+        model.semester != null
     }
 
     void "Test the save action with a null instance"() {
-        when:"Save is called for a domain instance that doesn't exist"
+        when: "Save is called for a domain instance that doesn't exist"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         controller.save(null)
 
-        then:"A 404 error is returned"
-        response.redirectedUrl == '/semester/index'
-        flash.message != null
+        then: "A 404 error is returned"
+        response.status == 404
     }
 
     void "Test the save action correctly persists"() {
@@ -55,19 +47,17 @@ class SemesterControllerSpec extends Specification implements ControllerUnitTest
             1 * save(_ as Semester)
         }
 
-        when:"The save action is executed with a valid instance"
+        when: "The save action is executed with a valid instance"
         response.reset()
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        populateValidParams(params)
         def semester = new Semester(params)
         semester.id = 1
 
         controller.save(semester)
 
-        then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/semester/show/1'
-        controller.flash.message != null
+        then: "A redirect is issued to the show action"
+        response.redirectedUrl == '/semester/index'
     }
 
     void "Test the save action with an invalid instance"() {
@@ -78,53 +68,27 @@ class SemesterControllerSpec extends Specification implements ControllerUnitTest
             }
         }
 
-        when:"The save action is executed with an invalid instance"
+        when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         def semester = new Semester()
         controller.save(semester)
 
-        then:"The create view is rendered again with the correct model"
+        then: "The create view is rendered again with the correct model"
         model.semester != null
         view == 'create'
-    }
-
-    void "Test the show action with a null id"() {
-        given:
-        controller.semesterService = Mock(SemesterService) {
-            1 * get(null) >> null
-        }
-
-        when:"The show action is executed with a null domain"
-        controller.show(null)
-
-        then:"A 404 error is returned"
-        response.status == 404
-    }
-
-    void "Test the show action with a valid id"() {
-        given:
-        controller.semesterService = Mock(SemesterService) {
-            1 * get(2) >> new Semester()
-        }
-
-        when:"A domain instance is passed to the show action"
-        controller.show(2)
-
-        then:"A model is populated containing the domain instance"
-        model.semester instanceof Semester
     }
 
     void "Test the edit action with a null id"() {
         given:
         controller.semesterService = Mock(SemesterService) {
-            1 * get(null) >> null
+            0 * get(null) >> null
         }
 
-        when:"The show action is executed with a null domain"
+        when: "The show action is executed with a null domain"
         controller.edit(null)
 
-        then:"A 404 error is returned"
+        then: "A 404 error is returned"
         response.status == 404
     }
 
@@ -134,23 +98,22 @@ class SemesterControllerSpec extends Specification implements ControllerUnitTest
             1 * get(2) >> new Semester()
         }
 
-        when:"A domain instance is passed to the show action"
+        when: "A domain instance is passed to the show action"
         controller.edit(2)
 
-        then:"A model is populated containing the domain instance"
+        then: "A model is populated containing the domain instance"
         model.semester instanceof Semester
     }
 
 
     void "Test the update action with a null instance"() {
-        when:"Save is called for a domain instance that doesn't exist"
+        when: "Save is called for a domain instance that doesn't exist"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         controller.update(null)
 
-        then:"A 404 error is returned"
-        response.redirectedUrl == '/semester/index'
-        flash.message != null
+        then: "A 404 error is returned"
+        response.status == 404
     }
 
     void "Test the update action correctly persists"() {
@@ -159,64 +122,45 @@ class SemesterControllerSpec extends Specification implements ControllerUnitTest
             1 * save(_ as Semester)
         }
 
-        when:"The save action is executed with a valid instance"
+        when: "The save action is executed with a valid instance"
         response.reset()
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        populateValidParams(params)
         def semester = new Semester(params)
         semester.id = 1
 
         controller.update(semester)
 
-        then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/semester/show/1'
-        controller.flash.message != null
+        then: "A redirect is issued to the show action"
+        response.redirectedUrl == '/semester/index'
     }
 
-    void "Test the update action with an invalid instance"() {
-        given:
-        controller.semesterService = Mock(SemesterService) {
-            1 * save(_ as Semester) >> { Semester semester ->
-                throw new ValidationException("Invalid instance", semester.errors)
-            }
-        }
-
-        when:"The save action is executed with an invalid instance"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'PUT'
-        controller.update(new Semester())
-
-        then:"The edit view is rendered again with the correct model"
-        model.semester != null
-        view == 'edit'
-    }
 
     void "Test the delete action with a null instance"() {
-        when:"The delete action is called for a null instance"
+        when: "The delete action is called for a null instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'DELETE'
-        controller.delete(null)
+        controller.delete()
 
-        then:"A 404 is returned"
-        response.redirectedUrl == '/semester/index'
-        flash.message != null
+        then: "A 404 is returned"
+        response.status == 404
     }
 
     void "Test the delete action with an instance"() {
         given:
         controller.semesterService = Mock(SemesterService) {
-            1 * delete(2)
+            get(_) >> new Semester(id: 2, kuerzel: 'webec')
+            1 * delete(_)
         }
 
-        when:"The domain instance is passed to the delete action"
+        when: "The domain instance is passed to the delete action"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'DELETE'
-        controller.delete(2)
+        request.addParameter('id', '2')
+        controller.delete()
 
-        then:"The user is redirected to index"
+        then: "The user is redirected to index"
         response.redirectedUrl == '/semester/index'
-        flash.message != null
     }
 }
 
